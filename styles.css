@@ -462,42 +462,107 @@ body::after {
 .lcursor { display:inline-block; color:var(--g); animation:blink .9s step-end infinite; text-shadow:0 0 8px rgba(0,255,136,.8); margin-left:1px; font-size:.85em; vertical-align:text-bottom; }
 .kw { color:#7ee8a2; } .cl { color:#00ff88; } .fn { color:#80d8ff; } .str { color:#ffd740; }
 
-/* ── Java Snippet card (span 2) ── */
+/* ── Java Snippet card ── */
 .pcard--code {
-  grid-column: span 2;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  min-height: 220px;
+}
+
+.code-left {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.code-left h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.code-left p {
+  font-size: 13px;
+  color: var(--color-muted, #8b949e); /* ajusta a tu variable de color secundario */
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.code-right {
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
   align-items: stretch;
 }
-.pcard--code .pcard-body {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--sp2) var(--sp3);
-  align-items: start;
+
+/* ── Terminal ── */
+.mini-terminal {
   width: 100%;
-  padding: var(--sp3);
-}
-.pcard--code .pcard-head {
-  grid-column: 1;
-  grid-row: 1;
-}
-.pcard--code .mini-terminal {
-  grid-column: 2;
-  grid-row: 1 / 4;
-  flex: unset;
-  height: 220px;
-  min-height: unset;
-}
-.pcard--code .mini-terminal .terminal-body {
-  height: calc(220px - 38px);
-  max-height: none;
+  background: #0d1117;
+  border-radius: 8px;
+  border: 1px solid #30363d;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.pcard--code .ptags {
-  grid-column: 1;
-  grid-row: 3;
-  margin-top: 0;
-  align-self: end;
+
+.terminal-head {
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.t-btn {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.t-red    { background: #ff5f57; }
+.t-yellow { background: #febc2e; }
+.t-green  { background: #28c840; }
+
+.t-label {
+  font-size: 11px;
+  color: #8b949e;
+  font-family: 'Share Tech Mono', monospace;
+  margin-left: 6px;
+}
+
+.terminal-body {
+  padding: 14px 18px;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.codebox {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre;
+  color: #c9d1d9;
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lcursor {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+  color: #3fb950;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 /* List view */
