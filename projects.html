@@ -27,20 +27,24 @@
 
       <!-- Category filters -->
       <div class="proj-filters" id="projFilters">
-        <button class="pf-btn active" data-filter="all"    data-i18n="pf_all">All</button>
-        <button class="pf-btn"        data-filter="java"   ><i class="fab fa-java"></i> <span data-i18n="pf_java">Java</span></button>
-        <button class="pf-btn"        data-filter="linux"  ><i class="fab fa-linux"></i> <span data-i18n="pf_linux">Linux</span></button>
-        <button class="pf-btn"        data-filter="ai"     ><i class="fas fa-robot"></i> <span data-i18n="pf_ai">AI / API</span></button>
-        <button class="pf-btn"        data-filter="raspi"  ><i class="fas fa-microchip"></i> <span data-i18n="pf_raspi">Raspberry Pi</span></button>
+        <button class="pf-btn active" data-filter="all"  data-i18n="pf_all">All</button>
+        <button class="pf-btn" data-filter="java"  ><i class="fab fa-java"></i> <span data-i18n="pf_java">Java</span></button>
+        <button class="pf-btn" data-filter="linux" ><i class="fab fa-linux"></i> <span data-i18n="pf_linux">Linux</span></button>
+        <button class="pf-btn" data-filter="ai"    ><i class="fas fa-robot"></i> <span data-i18n="pf_ai">AI / API</span></button>
+        <button class="pf-btn" data-filter="raspi" ><i class="fas fa-microchip"></i> <span data-i18n="pf_raspi">Raspberry Pi</span></button>
       </div>
 
       <!-- ════════════════ GRID VIEW ════════════════ -->
       <div class="proj-grid proj-grid--3" id="projGrid">
 
-        <!-- ── RASPBERRY PI ── -->
-        <a href="https://github.com/24kgolden/HEIMDALL" target="_blank" rel="noopener" class="pcard pcard--feat pcard--raspi" data-cat="raspi">
+        <!-- HEIMDALL — raspi + ai -->
+        <a href="https://github.com/24kgolden/HEIMDALL" target="_blank" rel="noopener"
+           class="pcard pcard--feat pcard--raspi" data-cat="raspi ai">
           <div class="pcard-icon pcard-icon--raspi"><i class="fas fa-eye"></i></div>
-          <div class="pcard-badge-cat" data-i18n="pf_raspi">Raspberry Pi</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat pcard-badge--raspi" data-i18n="pf_raspi">Raspberry Pi</span>
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3>HEIMDALL</h3>
@@ -51,10 +55,14 @@
           </div>
         </a>
 
-        <!-- ── AI / API ── -->
-        <a href="https://github.com/24kgolden/Ai-coding-agent" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="ai">
+        <!-- Ai-coding-agent — ai + java -->
+        <a href="https://github.com/24kgolden/Ai-coding-agent" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="ai java">
           <div class="pcard-icon"><i class="fas fa-robot"></i></div>
-          <div class="pcard-badge-cat" data-i18n="pf_ai">AI / API</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3>Ai-coding-agent</h3>
@@ -65,9 +73,14 @@
           </div>
         </a>
 
-        <a href="https://github.com/24kgolden/Ai-predictor" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="ai">
+        <!-- Ai-predictor — ai + java -->
+        <a href="https://github.com/24kgolden/Ai-predictor" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="ai java">
           <div class="pcard-icon"><i class="fas fa-brain"></i></div>
-          <div class="pcard-badge-cat" data-i18n="pf_ai">AI / API</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3>Ai-predictor</h3>
@@ -78,9 +91,14 @@
           </div>
         </a>
 
-        <a href="https://github.com/24kgolden/To-Do-API" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="ai">
+        <!-- To-Do API — ai + java -->
+        <a href="https://github.com/24kgolden/To-Do-API" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="ai java">
           <div class="pcard-icon"><i class="fas fa-code-branch"></i></div>
-          <div class="pcard-badge-cat" data-i18n="pf_ai">AI / API</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3>To-Do API</h3>
@@ -91,10 +109,13 @@
           </div>
         </a>
 
-        <!-- ── JAVA ── -->
-        <a href="https://github.com/24kgolden/PassForge-" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="java">
+        <!-- PassForge — java -->
+        <a href="https://github.com/24kgolden/PassForge-" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="java">
           <div class="pcard-icon"><i class="fas fa-key"></i></div>
-          <div class="pcard-badge-cat" data-i18n="pf_java">Java</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3>PassForge</h3>
@@ -105,9 +126,13 @@
           </div>
         </a>
 
-        <a href="https://github.com/24kgolden/Sistema-de-Roles-y-Permisos" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="java">
+        <!-- Roles & Permissions — java -->
+        <a href="https://github.com/24kgolden/Sistema-de-Roles-y-Permisos" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="java">
           <div class="pcard-icon"><i class="fas fa-shield-halved"></i></div>
-          <div class="pcard-badge-cat" data-i18n="pf_java">Java</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3 data-i18n="p2_n">Roles &amp; Permissions</h3>
@@ -118,12 +143,16 @@
           </div>
         </a>
 
-        <a href="https://github.com/24kgolden/Cl-nica-Odontol-gica-Sonrisas" target="_blank" rel="noopener" class="pcard" data-cat="java">
+        <!-- Clínica Odontológica — java -->
+        <a href="https://github.com/24kgolden/Cl-nica-Odontol-gica-Sonrisas" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
           <div class="pcard-img">
             <img src="clinica-sonrisas.png" alt="Clínica Odontológica Sonrisas" class="pimg"
               onerror="this.parentElement.innerHTML='<div class=\'pcard-icon\'><i class=\'fas fa-tooth\'></i></div>'"/>
           </div>
-          <div class="pcard-badge-cat" data-i18n="pf_java">Java</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3 data-i18n="p5_n">Clínica Odontológica Sonrisas</h3>
@@ -134,9 +163,13 @@
           </div>
         </a>
 
-        <a href="https://github.com/24kgolden/Proyecto-Crud?tab=readme-ov-file" target="_blank" rel="noopener" class="pcard" data-cat="java">
+        <!-- Peluqueria Canina — java -->
+        <a href="https://github.com/24kgolden/Proyecto-Crud?tab=readme-ov-file" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
           <div class="pcard-img"><img src="peluqueria.png" alt="Peluqueria Canina" class="pimg"/></div>
-          <div class="pcard-badge-cat" data-i18n="pf_java">Java</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3 data-i18n="p3_n">Peluqueria Canina</h3>
@@ -147,9 +180,13 @@
           </div>
         </a>
 
-        <a href="https://github.com/24kgolden/LoginValidatorSwing" target="_blank" rel="noopener" class="pcard" data-cat="java">
+        <!-- Login Validator — java -->
+        <a href="https://github.com/24kgolden/LoginValidatorSwing" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
           <div class="pcard-img"><img src="login.png" alt="Login Validator" class="pimg"/></div>
-          <div class="pcard-badge-cat" data-i18n="pf_java">Java</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3 data-i18n="p1_n">Login Validator</h3>
@@ -160,9 +197,14 @@
           </div>
         </a>
 
-        <!-- Java Snippet (span 2) -->
-        <div class="pcard pcard--code" style="grid-column: span 2;" data-cat="java">
-          <div class="pcard-badge-cat" data-i18n="pf_java">Java</div>
+        <!-- ── Java Snippet — DRAGGABLE ── -->
+        <div class="pcard pcard--code pcard--draggable" id="javaSnippet" draggable="true" data-cat="java" style="grid-column: span 2;">
+          <div class="pcard-drag-handle" title="Drag to move">
+            <i class="fas fa-grip-vertical"></i>
+          </div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="code-left">
             <div>
               <h3 data-i18n="p4_n">Java Snippet</h3>
@@ -185,10 +227,14 @@
           </div>
         </div>
 
-        <!-- ── LINUX ── -->
-        <a href="https://github.com/24kgolden/FILECLI" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="linux">
+        <!-- FILECLI — linux + java -->
+        <a href="https://github.com/24kgolden/FILECLI" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="linux java">
           <div class="pcard-icon"><i class="fab fa-linux"></i></div>
-          <div class="pcard-badge-cat" data-i18n="pf_linux">Linux</div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_linux">Linux</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
           <div class="pcard-body">
             <div class="pcard-head">
               <h3>FILECLI</h3>
@@ -283,87 +329,226 @@
   <div id="footer-placeholder"></div>
   <script src="components.js"></script>
   <script src="script.js"></script>
+
   <style>
-    .proj-filters {
-      display: flex;
-      gap: .6rem;
-      flex-wrap: wrap;
-      margin-bottom: var(--sp5, 2rem);
-    }
+    /* ── Filters ── */
+    .proj-filters { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:var(--sp5,2rem); }
     .pf-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .45rem 1.1rem;
-      border: 1px solid rgba(255,255,255,.15);
-      background: transparent;
-      color: var(--fg-2, #aaa);
-      font-family: inherit;
-      font-size: .78rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all .2s;
+      display:inline-flex; align-items:center; gap:.4rem;
+      padding:.45rem 1.1rem;
+      border:1px solid rgba(255,255,255,.15); background:transparent;
+      color:var(--fg-2,#aaa); font-family:inherit; font-size:.78rem;
+      letter-spacing:.08em; text-transform:uppercase; cursor:pointer;
+      border-radius:2px; transition:all .2s;
     }
-    .pf-btn:hover { border-color: var(--accent, #00ff88); color: var(--accent, #00ff88); }
-    .pf-btn.active { background: var(--accent, #00ff88); border-color: var(--accent, #00ff88); color: #000; font-weight: 700; }
-    .pcard.hidden-filter { display: none !important; }
+    .pf-btn:hover { border-color:var(--accent,#00ff88); color:var(--accent,#00ff88); }
+    .pf-btn.active { background:var(--accent,#00ff88); border-color:var(--accent,#00ff88); color:#000; font-weight:700; }
+    .pf-btn[data-filter="raspi"]:hover:not(.active) { border-color:#ff4d6d; color:#ff4d6d; }
+    .pf-btn[data-filter="raspi"].active { background:#ff4d6d; border-color:#ff4d6d; color:#fff; }
+    .pcard.hidden-filter { display:none !important; }
 
-    /* Category badge */
+    /* ── Multi-badge row ── */
+    .pcard-badges {
+      position:absolute; top:.85rem; right:.85rem;
+      display:flex; flex-direction:column; gap:.3rem; align-items:flex-end;
+      z-index:2; pointer-events:none;
+    }
     .pcard-badge-cat {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      font-size: .65rem;
-      font-family: 'Share Tech Mono', monospace;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .2rem .55rem;
-      border: 1px solid rgba(0,255,136,.25);
-      color: var(--accent, #00ff88);
-      border-radius: 2px;
-      background: rgba(0,255,136,.06);
-      pointer-events: none;
-      z-index: 2;
+      font-size:.62rem; font-family:'Share Tech Mono',monospace;
+      letter-spacing:.09em; text-transform:uppercase;
+      padding:.18rem .5rem;
+      border:1px solid rgba(0,255,136,.25); color:var(--accent,#00ff88);
+      border-radius:2px; background:rgba(0,255,136,.06);
+    }
+    .pcard-badge--raspi {
+      border-color:rgba(255,77,109,.35); color:#ff4d6d;
+      background:rgba(255,77,109,.08);
     }
 
-    /* Raspberry Pi theme */
+    /* ── Raspberry Pi card ── */
     .pcard--raspi .pcard-icon--raspi {
-      background: linear-gradient(135deg, rgba(198,0,66,.18) 0%, rgba(198,0,66,.05) 100%);
-      border-color: rgba(198,0,66,.35);
-      color: #ff4d6d;
+      background:linear-gradient(135deg,rgba(198,0,66,.18) 0%,rgba(198,0,66,.05) 100%);
+      border-color:rgba(198,0,66,.35); color:#ff4d6d;
     }
-    .pcard--raspi .pcard-badge-cat {
-      border-color: rgba(255,77,109,.35);
-      color: #ff4d6d;
-      background: rgba(255,77,109,.08);
-    }
-    .pcard--raspi:hover { border-color: rgba(255,77,109,.5) !important; }
-    .pf-btn[data-filter="raspi"].active { background: #ff4d6d; border-color: #ff4d6d; color: #fff; }
-    .pf-btn[data-filter="raspi"]:hover:not(.active) { border-color: #ff4d6d; color: #ff4d6d; }
+    .pcard--raspi:hover { border-color:rgba(255,77,109,.5) !important; }
 
-    .pcard { position: relative; }
+    /* ── Cards need relative for badges ── */
+    .pcard { position:relative; }
+
+    /* ── Draggable Java Snippet ── */
+    .pcard--draggable { cursor:grab; user-select:none; }
+    .pcard--draggable:active { cursor:grabbing; }
+
+    .pcard-drag-handle {
+      position:absolute; top:.85rem; left:.85rem;
+      color:rgba(0,255,136,.35); font-size:.9rem;
+      cursor:grab; z-index:3; transition:color .2s;
+    }
+    .pcard--draggable:hover .pcard-drag-handle { color:var(--accent,#00ff88); }
+
+    /* While dragging */
+    .pcard--dragging {
+      opacity:.35;
+      border-color:var(--accent,#00ff88) !important;
+      box-shadow:0 0 20px rgba(0,255,136,.2) !important;
+    }
+
+    /* Drop zone indicator — shows between cards */
+    .drop-indicator {
+      grid-column: span 1;
+      border:2px dashed var(--accent,#00ff88);
+      border-radius:6px;
+      background:rgba(0,255,136,.04);
+      min-height:80px;
+      transition:all .15s;
+      pointer-events:none;
+    }
+    .drop-indicator.drop-indicator--wide { grid-column: span 2; }
+
+    /* Drag-over highlight on sibling cards */
+    .pcard.drag-over-before { box-shadow:-4px 0 0 var(--accent,#00ff88) !important; }
+    .pcard.drag-over-after  { box-shadow: 4px 0 0 var(--accent,#00ff88) !important; }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const filterBtns = document.querySelectorAll('.pf-btn');
-      const cards      = document.querySelectorAll('#projGrid [data-cat]');
-      const snippet    = document.querySelector('.pcard--code');
 
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          const filter = this.dataset.filter;
-          cards.forEach(card => {
-            card.classList.toggle('hidden-filter', filter !== 'all' && card.dataset.cat !== filter);
-          });
-          if (snippet) {
-            snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
-          }
-        });
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ══════════════════════════════════════
+       1. MULTI-CATEGORY FILTER
+    ══════════════════════════════════════ */
+    const filterBtns = document.querySelectorAll('.pf-btn');
+    const snippet    = document.getElementById('javaSnippet');
+
+    function getCards() {
+      return document.querySelectorAll('#projGrid [data-cat]');
+    }
+
+    function applyFilter(filter) {
+      getCards().forEach(card => {
+        const cats = card.dataset.cat.split(' ');
+        const show = filter === 'all' || cats.includes(filter);
+        card.classList.toggle('hidden-filter', !show);
+      });
+      // Keep snippet span-2 when visible
+      if (snippet) {
+        snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
+      }
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        applyFilter(this.dataset.filter);
       });
     });
+
+    /* ══════════════════════════════════════
+       2. DRAG-AND-DROP — Java Snippet
+    ══════════════════════════════════════ */
+    if (!snippet) return;
+
+    const grid = document.getElementById('projGrid');
+    let dragTarget = null;    // placeholder div inserted in grid
+    let overCard   = null;    // card we're hovering over
+    let insertBefore = true;  // insert before or after overCard
+
+    /* Helpers */
+    function getVisibleCards() {
+      return [...grid.querySelectorAll('[data-cat]:not(#javaSnippet):not(.hidden-filter)')];
+    }
+
+    function removePlaceholder() {
+      const old = grid.querySelector('.drop-indicator');
+      if (old) old.remove();
+    }
+
+    function insertPlaceholder(refCard, before) {
+      removePlaceholder();
+      const ph = document.createElement('div');
+      ph.className = 'drop-indicator';
+      if (before) {
+        grid.insertBefore(ph, refCard);
+      } else {
+        refCard.after(ph);
+      }
+    }
+
+    /* ── dragstart ── */
+    snippet.addEventListener('dragstart', e => {
+      dragTarget = snippet;
+      snippet.classList.add('pcard--dragging');
+      // Must set data for Firefox
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', 'snippet');
+      // Delay so the card doesn't vanish immediately
+      setTimeout(() => { snippet.style.visibility = 'hidden'; }, 0);
+    });
+
+    /* ── dragend ── */
+    snippet.addEventListener('dragend', () => {
+      snippet.classList.remove('pcard--dragging');
+      snippet.style.visibility = '';
+      removePlaceholder();
+      getVisibleCards().forEach(c => c.classList.remove('drag-over-before','drag-over-after'));
+      dragTarget = null;
+      overCard   = null;
+    });
+
+    /* ── dragover on grid ── */
+    grid.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (!dragTarget) return;
+
+      const cards = getVisibleCards();
+      let target = null;
+      let before = true;
+
+      // Find which card the pointer is closest to
+      for (const card of cards) {
+        const rect = card.getBoundingClientRect();
+        const midX = rect.left + rect.width / 2;
+        const midY = rect.top  + rect.height / 2;
+
+        if (e.clientY >= rect.top - 8 && e.clientY <= rect.bottom + 8) {
+          target = card;
+          before = e.clientX < midX;
+          break;
+        }
+        // Fallback: row detection by Y proximity
+        if (Math.abs(e.clientY - midY) < rect.height * 0.7) {
+          target = card;
+          before = e.clientX < midX;
+        }
+      }
+
+      if (!target) return;
+      if (target === overCard && before === insertBefore) return;
+
+      overCard     = target;
+      insertBefore = before;
+      insertPlaceholder(target, before);
+    });
+
+    /* ── drop ── */
+    grid.addEventListener('drop', e => {
+      e.preventDefault();
+      if (!dragTarget) return;
+
+      const ph = grid.querySelector('.drop-indicator');
+      if (ph) {
+        grid.insertBefore(snippet, ph);
+        ph.remove();
+      }
+      // Restore span-2
+      snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
+    });
+
+    /* Allow drop on the grid background */
+    grid.addEventListener('dragenter', e => e.preventDefault());
+
+  });
   </script>
 </body>
 </html>
