@@ -25,11 +25,19 @@
         </div>
       </div>
 
+      <!-- Category filters -->
+      <div class="proj-filters" id="projFilters">
+        <button class="pf-btn active" data-filter="all">All</button>
+        <button class="pf-btn" data-filter="java"><i class="fab fa-java"></i> Java</button>
+        <button class="pf-btn" data-filter="linux"><i class="fab fa-linux"></i> Linux</button>
+        <button class="pf-btn" data-filter="ai"><i class="fas fa-robot"></i> AI / API</button>
+      </div>
+
       <!-- Grid view -->
       <div class="proj-grid proj-grid--3" id="projGrid">
 
         <!-- 1. Login Validator -->
-        <a href="https://github.com/24kgolden/LoginValidatorSwing" target="_blank" rel="noopener" class="pcard">
+        <a href="https://github.com/24kgolden/LoginValidatorSwing" target="_blank" rel="noopener" class="pcard" data-cat="java">
           <div class="pcard-img"><img src="login.png" alt="Login Validator" class="pimg"/></div>
           <div class="pcard-body">
             <div class="pcard-head">
@@ -42,7 +50,7 @@
         </a>
 
         <!-- 2. Roles & Permissions -->
-        <a href="https://github.com/24kgolden/Sistema-de-Roles-y-Permisos" target="_blank" rel="noopener" class="pcard pcard--feat">
+        <a href="https://github.com/24kgolden/Sistema-de-Roles-y-Permisos" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="java">
           <div class="pcard-icon"><i class="fas fa-shield-halved"></i></div>
           <div class="pcard-body">
             <div class="pcard-head">
@@ -55,7 +63,7 @@
         </a>
 
         <!-- 3. Peluqueria Canina -->
-        <a href="https://github.com/24kgolden/Proyecto-Crud?tab=readme-ov-file" target="_blank" rel="noopener" class="pcard">
+        <a href="https://github.com/24kgolden/Proyecto-Crud?tab=readme-ov-file" target="_blank" rel="noopener" class="pcard" data-cat="java">
           <div class="pcard-img"><img src="peluqueria.png" alt="Peluqueria Canina" class="pimg"/></div>
           <div class="pcard-body">
             <div class="pcard-head">
@@ -68,7 +76,7 @@
         </a>
 
         <!-- 4. Clínica Odontológica Sonrisas -->
-        <a href="https://github.com/24kgolden/Cl-nica-Odontol-gica-Sonrisas" target="_blank" rel="noopener" class="pcard">
+        <a href="https://github.com/24kgolden/Cl-nica-Odontol-gica-Sonrisas" target="_blank" rel="noopener" class="pcard" data-cat="java">
           <div class="pcard-img">
             <img src="clinica-sonrisas.png" alt="Clínica Odontológica Sonrisas" class="pimg"
               onerror="this.parentElement.innerHTML='<div class=\'pcard-icon\'><i class=\'fas fa-tooth\'></i></div>'"/>
@@ -84,7 +92,7 @@
         </a>
 
         <!-- 5. Java Snippet -->
-        <div class="pcard pcard--code" style="grid-column: span 2;">
+        <div class="pcard pcard--code" style="grid-column: span 2;" data-cat="java">
           <div class="code-left">
             <div>
               <h3 data-i18n="p4_n">Java Snippet</h3>
@@ -106,6 +114,32 @@
             </div>
           </div>
         </div>
+
+        <!-- 6. FILECLI -->
+        <a href="https://github.com/24kgolden/FILECLI" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="linux">
+          <div class="pcard-icon"><i class="fab fa-linux"></i></div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>FILECLI</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p6_d">CLI file management tool for Linux — written in Java. Navigate, create, delete and manage files directly from the terminal with a clean command interface.</p>
+            <div class="ptags"><span>Java</span><span>CLI</span><span>Linux</span><span>Terminal</span></div>
+          </div>
+        </a>
+
+        <!-- 7. To-Do API -->
+        <a href="https://github.com/24kgolden/To-Do-API" target="_blank" rel="noopener" class="pcard pcard--feat" data-cat="ai">
+          <div class="pcard-icon"><i class="fas fa-robot"></i></div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>To-Do API</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p7_d">REST API for task management built with Spring Boot 3 and Java 21. Full CRUD operations, clean architecture and production-ready REST endpoints.</p>
+            <div class="ptags"><span>Spring Boot 3</span><span>Java 21</span><span>REST API</span><span>CRUD</span></div>
+          </div>
+        </a>
 
       </div><!-- /proj-grid -->
 
@@ -155,5 +189,68 @@
   <div id="footer-placeholder"></div>
   <script src="components.js"></script>
   <script src="script.js"></script>
+  <style>
+    .proj-filters {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-bottom: var(--sp5, 2rem);
+    }
+    .pf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .45rem 1.1rem;
+      border: 1px solid rgba(255,255,255,.15);
+      background: transparent;
+      color: var(--fg-2, #aaa);
+      font-family: inherit;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all .2s;
+    }
+    .pf-btn:hover {
+      border-color: var(--accent, #00ff88);
+      color: var(--accent, #00ff88);
+    }
+    .pf-btn.active {
+      background: var(--accent, #00ff88);
+      border-color: var(--accent, #00ff88);
+      color: #000;
+      font-weight: 700;
+    }
+    .pcard.hidden-filter {
+      display: none !important;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const filterBtns = document.querySelectorAll('.pf-btn');
+      const cards = document.querySelectorAll('#projGrid [data-cat]');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const filter = this.dataset.filter;
+          cards.forEach(card => {
+            if (filter === 'all' || card.dataset.cat === filter) {
+              card.classList.remove('hidden-filter');
+            } else {
+              card.classList.add('hidden-filter');
+            }
+          });
+          // Fix span 2 on java snippet when hidden
+          const snippet = document.querySelector('.pcard--code');
+          if (snippet) {
+            snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
