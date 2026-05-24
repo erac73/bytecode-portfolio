@@ -245,6 +245,23 @@
           </div>
         </a>
 
+        <!-- ════ S-Y-S-P-U-L-S-E — linux ════ -->
+        <a href="https://github.com/24kgolden/S-Y-S-P-U-L-S-E" target="_blank" rel="noopener"
+           class="pcard pcard--feat pcard--syspulse" data-cat="linux">
+          <div class="pcard-icon pcard-icon--syspulse"><i class="fas fa-gauge-high"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat pcard-badge--linux" data-i18n="pf_linux">Linux</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>S-Y-S-P-U-L-S-E</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p_syspulse_d">Real-time Linux system monitor with a cyberpunk dashboard aesthetic. Tracks CPU, RAM, processes and network — inspired by btop, htop, glances and neofetch.</p>
+            <div class="ptags"><span>Linux</span><span>Bash</span><span>System</span><span>Dashboard</span><span>Cyberpunk</span></div>
+          </div>
+        </a>
+
       </div><!-- /proj-grid -->
 
       <!-- ════════════════ LIST VIEW ════════════════ -->
@@ -321,6 +338,13 @@
           <span class="pl-yr">2024</span>
           <span class="pl-arr">↗</span>
         </a>
+        <!-- ════ S-Y-S-P-U-L-S-E list row ════ -->
+        <a href="https://github.com/24kgolden/S-Y-S-P-U-L-S-E" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">S-Y-S-P-U-L-S-E</span>
+          <span class="pl-stack">Linux · Bash · Dashboard</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
       </div>
 
     </div>
@@ -345,6 +369,8 @@
     .pf-btn.active { background:var(--accent,#00ff88); border-color:var(--accent,#00ff88); color:#000; font-weight:700; }
     .pf-btn[data-filter="raspi"]:hover:not(.active) { border-color:#ff4d6d; color:#ff4d6d; }
     .pf-btn[data-filter="raspi"].active { background:#ff4d6d; border-color:#ff4d6d; color:#fff; }
+    .pf-btn[data-filter="linux"]:hover:not(.active) { border-color:#00cfff; color:#00cfff; }
+    .pf-btn[data-filter="linux"].active { background:#00cfff; border-color:#00cfff; color:#000; }
     .pcard.hidden-filter { display:none !important; }
 
     /* ── Multi-badge row ── */
@@ -364,6 +390,10 @@
       border-color:rgba(255,77,109,.35); color:#ff4d6d;
       background:rgba(255,77,109,.08);
     }
+    .pcard-badge--linux {
+      border-color:rgba(0,207,255,.35); color:#00cfff;
+      background:rgba(0,207,255,.08);
+    }
 
     /* ── Raspberry Pi card ── */
     .pcard--raspi .pcard-icon--raspi {
@@ -371,6 +401,16 @@
       border-color:rgba(198,0,66,.35); color:#ff4d6d;
     }
     .pcard--raspi:hover { border-color:rgba(255,77,109,.5) !important; }
+
+    /* ── S-Y-S-P-U-L-S-E card ── */
+    .pcard--syspulse .pcard-icon--syspulse {
+      background:linear-gradient(135deg,rgba(0,207,255,.18) 0%,rgba(0,207,255,.05) 100%);
+      border-color:rgba(0,207,255,.35); color:#00cfff;
+    }
+    .pcard--syspulse:hover { border-color:rgba(0,207,255,.5) !important; }
+    .pcard--syspulse:hover .pcard-icon--syspulse {
+      box-shadow: 0 0 18px rgba(0,207,255,.25);
+    }
 
     /* ── Cards need relative for badges ── */
     .pcard { position:relative; }
@@ -478,10 +518,8 @@
     snippet.addEventListener('dragstart', e => {
       dragTarget = snippet;
       snippet.classList.add('pcard--dragging');
-      // Must set data for Firefox
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData('text/plain', 'snippet');
-      // Delay so the card doesn't vanish immediately
       setTimeout(() => { snippet.style.visibility = 'hidden'; }, 0);
     });
 
@@ -505,7 +543,6 @@
       let target = null;
       let before = true;
 
-      // Find which card the pointer is closest to
       for (const card of cards) {
         const rect = card.getBoundingClientRect();
         const midX = rect.left + rect.width / 2;
@@ -516,7 +553,6 @@
           before = e.clientX < midX;
           break;
         }
-        // Fallback: row detection by Y proximity
         if (Math.abs(e.clientY - midY) < rect.height * 0.7) {
           target = card;
           before = e.clientX < midX;
@@ -541,7 +577,6 @@
         grid.insertBefore(snippet, ph);
         ph.remove();
       }
-      // Restore span-2
       snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
     });
 
