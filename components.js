@@ -22,7 +22,7 @@
     { href:'certs.html',    i18n:'nav_certs',    label:'Certs'     },
     { href:'projects.html', i18n:'nav_projects', label:'Projects'  },
     { href:'skills.html',   i18n:'nav_skills',   label:'Skills'    },
-    { href:'github.html',   i18n:'nav_github',   label:'GitHub'    },
+    { href:'github.html',   i18n:'nav_github',   label:'Terminal'  },
     { href:'contact.html',  i18n:'nav_contact',  label:'Contact'   },
   ];
 
