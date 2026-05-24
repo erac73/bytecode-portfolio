@@ -4,8 +4,8 @@
 const LANG = {
   en: {
     nav_status:"Studying · Building · Learning",
-    nav_github:"GitHub",
-    gh_title:"GitHub Activity", gh_view:"View Profile",
+    nav_github:"Terminal",
+    gh_title:"Terminal", gh_view:"View Profile",
     gh_repos:"Recent Repositories", gh_commits:"Recent Commits",
     gh_loading:"Fetching from GitHub...", gh_no_desc:"No description.",
     gh_error:"Could not load GitHub data.",
@@ -96,8 +96,8 @@ const LANG = {
   },
   es: {
     nav_status:"Estudiando · Construyendo · Aprendiendo",
-    nav_github:"GitHub",
-    gh_title:"Actividad en GitHub", gh_view:"Ver Perfil",
+    nav_github:"Terminal",
+    gh_title:"Terminal", gh_view:"Ver Perfil",
     gh_repos:"Repositorios Recientes", gh_commits:"Commits Recientes",
     gh_loading:"Cargando desde GitHub...", gh_no_desc:"Sin descripción.",
     gh_error:"No se pudo cargar la información de GitHub.",
