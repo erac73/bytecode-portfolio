@@ -458,6 +458,7 @@
     ══════════════════════════════════════ */
     const filterBtns = document.querySelectorAll('.pf-btn');
     const snippet    = document.getElementById('javaSnippet');
+    const grid       = document.getElementById('projGrid');
 
     function getCards() {
       return document.querySelectorAll('#projGrid [data-cat]');
@@ -469,7 +470,6 @@
         const show = filter === 'all' || cats.includes(filter);
         card.classList.toggle('hidden-filter', !show);
       });
-      // Keep snippet span-2 when visible
       if (snippet) {
         snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
       }
@@ -485,59 +485,92 @@
 
     /* ══════════════════════════════════════
        2. DRAG-AND-DROP — Java Snippet
+       Fixes:
+         · visibility:hidden → opacity (no double-gap bug)
+         · localStorage persists drop position across reloads
     ══════════════════════════════════════ */
     if (!snippet) return;
 
-    const grid = document.getElementById('projGrid');
-    let dragTarget = null;    // placeholder div inserted in grid
-    let overCard   = null;    // card we're hovering over
-    let insertBefore = true;  // insert before or after overCard
+    const STORAGE_KEY = 'javaSnippetPos';
+    let isDragging   = false;
+    let overCard     = null;
+    let insertBefore = true;
 
-    /* Helpers */
+    /* ── Helpers ── */
     function getVisibleCards() {
       return [...grid.querySelectorAll('[data-cat]:not(#javaSnippet):not(.hidden-filter)')];
     }
 
     function removePlaceholder() {
-      const old = grid.querySelector('.drop-indicator');
-      if (old) old.remove();
+      grid.querySelector('.drop-indicator')?.remove();
     }
 
     function insertPlaceholder(refCard, before) {
       removePlaceholder();
       const ph = document.createElement('div');
       ph.className = 'drop-indicator';
-      if (before) {
-        grid.insertBefore(ph, refCard);
-      } else {
-        refCard.after(ph);
-      }
+      before ? grid.insertBefore(ph, refCard) : refCard.after(ph);
     }
 
-    /* ── dragstart ── */
+    /* ── Persistence: save position as index among ALL grid children ── */
+    function savePosition() {
+      const children = [...grid.children].filter(el => !el.classList.contains('drop-indicator'));
+      localStorage.setItem(STORAGE_KEY, children.indexOf(snippet));
+    }
+
+    function restorePosition() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === null) return;
+      const idx      = parseInt(saved, 10);
+      const children = [...grid.children].filter(el => !el.classList.contains('drop-indicator'));
+      if (isNaN(idx) || idx < 0) return;
+
+      if (idx >= children.length) {
+        grid.appendChild(snippet);
+      } else {
+        const ref = children[idx];
+        if (ref && ref !== snippet) grid.insertBefore(snippet, ref);
+      }
+      snippet.style.gridColumn = 'span 2';
+    }
+
+    /* Restore saved position on page load */
+    restorePosition();
+
+    /* ── dragstart ──
+       KEY FIX: use opacity instead of visibility:hidden.
+       visibility:hidden keeps the element in the flow → double gap with placeholder.
+       opacity:0 + pointer-events:none also keeps it in flow but invisible,
+       so the grid doesn't collapse — only the placeholder marks the target. ── */
     snippet.addEventListener('dragstart', e => {
-      dragTarget = snippet;
+      isDragging = true;
       snippet.classList.add('pcard--dragging');
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData('text/plain', 'snippet');
-      setTimeout(() => { snippet.style.visibility = 'hidden'; }, 0);
+
+      /* rAF so the browser captures the drag-image BEFORE we change opacity */
+      requestAnimationFrame(() => {
+        snippet.style.opacity        = '0';
+        snippet.style.pointerEvents  = 'none';
+      });
     });
 
     /* ── dragend ── */
     snippet.addEventListener('dragend', () => {
+      isDragging = false;
       snippet.classList.remove('pcard--dragging');
-      snippet.style.visibility = '';
+      snippet.style.opacity       = '';
+      snippet.style.pointerEvents = '';
       removePlaceholder();
       getVisibleCards().forEach(c => c.classList.remove('drag-over-before','drag-over-after'));
-      dragTarget = null;
-      overCard   = null;
+      overCard = null;
     });
 
-    /* ── dragover on grid ── */
+    /* ── dragover ── */
     grid.addEventListener('dragover', e => {
       e.preventDefault();
       e.dataTransfer.dropEffect = 'move';
-      if (!dragTarget) return;
+      if (!isDragging) return;
 
       const cards = getVisibleCards();
       let target = null;
@@ -553,15 +586,13 @@
           before = e.clientX < midX;
           break;
         }
-        if (Math.abs(e.clientY - midY) < rect.height * 0.7) {
+        if (Math.abs(e.clientY - midY) < rect.height * 0.6) {
           target = card;
           before = e.clientX < midX;
         }
       }
 
-      if (!target) return;
-      if (target === overCard && before === insertBefore) return;
-
+      if (!target || (target === overCard && before === insertBefore)) return;
       overCard     = target;
       insertBefore = before;
       insertPlaceholder(target, before);
@@ -570,17 +601,21 @@
     /* ── drop ── */
     grid.addEventListener('drop', e => {
       e.preventDefault();
-      if (!dragTarget) return;
+      if (!isDragging) return;
 
       const ph = grid.querySelector('.drop-indicator');
       if (ph) {
         grid.insertBefore(snippet, ph);
         ph.remove();
       }
-      snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
+
+      snippet.style.gridColumn    = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
+      snippet.style.opacity       = '';
+      snippet.style.pointerEvents = '';
+
+      savePosition(); /* ← persist new position */
     });
 
-    /* Allow drop on the grid background */
     grid.addEventListener('dragenter', e => e.preventDefault());
 
   });
