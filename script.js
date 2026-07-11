@@ -714,9 +714,11 @@ if(certSec) new IntersectionObserver(e=>{
     ],
 
     skills: () => [
-      { cls:"t-out-special", t:"languages   Java · JavaScript · SQL" },
-      { cls:"t-out-special", t:"frameworks  Spring Boot · HTML · CSS" },
-      { cls:"t-out-special", t:"tools       Docker · Git · MySQL" },
+      { cls:"t-out-special", t:"languages   Java · JavaScript · Python · SQL · PHP" },
+      { cls:"t-out-special", t:"backend     Spring Boot · REST APIs · JPA · JSP" },
+      { cls:"t-out-special", t:"frontend    HTML5 · CSS3 · JavaScript · Swing" },
+      { cls:"t-out-special", t:"tools       Docker · Git · MySQL · Linux · Bash" },
+      { cls:"t-out-special", t:"emerging    AI/ML · IoT · Cryptography" },
     ],
 
     projects: () => [
