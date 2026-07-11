@@ -469,30 +469,46 @@ if(certSec) new IntersectionObserver(e=>{
    GITHUB ACTIVITY
 ═══════════════════════════════════════════ */
 (function initGitHub() {
-  const USER = "24kgolden";
+  const USER = "erac73";
   const BASE = "https://api.github.com";
 
   // ── Datos estáticos de respaldo (siempre se muestran primero) ──
   const STATIC_PROFILE = {
-    public_repos: 12,
-    followers: 2,
-    following: 4,
+    public_repos: 25,
+    followers: 10,
+    following: 31,
   };
 
   const STATIC_REPOS = [
-    { name: "bytecode-portfolio",       html_url: "https://github.com/24kgolden/bytecode-portfolio",          description: "Personal developer portfolio built with vanilla HTML, CSS and JS.", language: "HTML",       stargazers_count: 0, forks_count: 0, updated_at: "2025-05-01" },
-    { name: "Cl-nica-Odontol-gica-Sonrisas", html_url: "https://github.com/24kgolden/Cl-nica-Odontol-gica-Sonrisas", description: "Dental clinic management system — patient records, appointments, Java + MySQL.", language: "Java", stargazers_count: 0, forks_count: 0, updated_at: "2025-04-10" },
-    { name: "Sistema-de-Roles-y-Permisos", html_url: "https://github.com/24kgolden/Sistema-de-Roles-y-Permisos",   description: "Role-based access control system in Java with granular permission management.", language: "Java",       stargazers_count: 0, forks_count: 0, updated_at: "2024-11-20" },
-    { name: "Proyecto-Crud",            html_url: "https://github.com/24kgolden/Proyecto-Crud",                description: "Full CRUD desktop app for a canine grooming salon — Java + MySQL.",    language: "Java",       stargazers_count: 0, forks_count: 0, updated_at: "2023-09-15" },
-    { name: "LoginValidatorSwing",      html_url: "https://github.com/24kgolden/LoginValidatorSwing",          description: "Desktop login validator with Java Swing, dark UI and credential management.", language: "Java", stargazers_count: 0, forks_count: 0, updated_at: "2023-06-10" },
+    { name: "raindrops", html_url: "https://github.com/erac73/raindrops", description: "Threshold cryptography-based distributed storage model — data fragmented into micro-units.", language: "Java", stargazers_count: 1, forks_count: 0, updated_at: "2026-07-11" },
+    { name: "rubik-os", html_url: "https://github.com/erac73/rubik-os", description: "Distribución Linux basada en Arch, optimizada para memoria con arquitectura descentralizada.", language: "Shell", stargazers_count: 1, forks_count: 0, updated_at: "2026-06-27" },
+    { name: "chatark", html_url: "https://github.com/erac73/chatark", description: "Extensión de navegador para descargar conversaciones de ChatGPT, Claude y Gemini.", language: "JavaScript", stargazers_count: 1, forks_count: 0, updated_at: "2026-06-25" },
+    { name: "book-manager-api", html_url: "https://github.com/erac73/book-manager-api", description: "API REST con Spring Boot 3 y Java 17 para gestionar colección de libros.", language: "Java", stargazers_count: 0, forks_count: 0, updated_at: "2026-06-25" },
+    { name: "Ai-coding-agent", html_url: "https://github.com/erac73/Ai-coding-agent", description: "Autonomous AI coding agent built in Java 21 — analyzes, writes and modifies code.", language: "Java", stargazers_count: 1, forks_count: 0, updated_at: "2026-06-25" },
+    { name: "HEIMDALL", html_url: "https://github.com/erac73/HEIMDALL", description: "Intelligent surveillance system with AI for Raspberry Pi 5 — real-time detection.", language: "Shell", stargazers_count: 1, forks_count: 0, updated_at: "2026-05-19" },
+    { name: "bytecode-portfolio", html_url: "https://github.com/erac73/bytecode-portfolio", description: "Personal developer portfolio built with vanilla HTML, CSS and JS.", language: "HTML", stargazers_count: 1, forks_count: 0, updated_at: "2026-05-24" },
+    { name: "S-Y-S-P-U-L-S-E", html_url: "https://github.com/erac73/S-Y-S-P-U-L-S-E", description: "Monitor de sistema avanzado para Linux en tiempo real — cyberpunk dashboard.", language: "Java", stargazers_count: 1, forks_count: 0, updated_at: "2026-05-23" },
+    { name: "PassForge-", html_url: "https://github.com/erac73/PassForge-", description: "Full-stack password manager with Java Spring Boot backend and modern frontend.", language: "JavaScript", stargazers_count: 1, forks_count: 0, updated_at: "2026-05-21" },
+    { name: "To-Do-API", html_url: "https://github.com/erac73/To-Do-API", description: "REST API for task management built with Spring Boot 3 and Java 21.", language: "Java", stargazers_count: 1, forks_count: 0, updated_at: "2026-05-25" },
+    { name: "FILECLI", html_url: "https://github.com/erac73/FILECLI", description: "CLI file management tool for Linux — written in Java.", language: "Java", stargazers_count: 1, forks_count: 0, updated_at: "2026-05-21" },
+    { name: "Sistema-de-Roles-y-Permisos", html_url: "https://github.com/erac73/Sistema-de-Roles-y-Permisos", description: "Role-based access control system in Java with granular permission management.", language: "Java", stargazers_count: 0, forks_count: 0, updated_at: "2026-05-19" },
+    { name: "Cl-nica-Odontol-gica-Sonrisas", html_url: "https://github.com/erac73/Cl-nica-Odontol-gica-Sonrisas", description: "Dental clinic management system — patient records, appointments, Java + MySQL.", language: "CSS", stargazers_count: 1, forks_count: 0, updated_at: "2026-05-19" },
+    { name: "Gestor-de-Autom-viles", html_url: "https://github.com/erac73/Gestor-de-Autom-viles-Administraci-n-y-Control-de-Veh-culos", description: "Sistema de administración y control de vehículos — Java.", language: "Java", stargazers_count: 2, forks_count: 0, updated_at: "2025-05-16" },
+    { name: "Proyecto-Crud", html_url: "https://github.com/erac73/Proyecto-Crud", description: "Full CRUD desktop app for a canine grooming salon — Java + MySQL.", language: "Java", stargazers_count: 2, forks_count: 0, updated_at: "2025-02-09" },
+    { name: "LoginValidatorSwing", html_url: "https://github.com/erac73/LoginValidatorSwing", description: "Desktop login validator with Java Swing, dark UI and credential management.", language: "Java", stargazers_count: 2, forks_count: 0, updated_at: "2026-05-25" },
+    { name: "docker-commands-reference", html_url: "https://github.com/erac73/docker-commands-reference", description: "Referencia completa de comandos Docker — containerización y DevOps.", language: null, stargazers_count: 1, forks_count: 0, updated_at: "2026-06-03" },
+    { name: "Abroles_y_Grafos", html_url: "https://github.com/erac73/Abroles_y_Grafos", description: "Implementación de estructuras de datos — árboles y grafos en Java.", language: "Java", stargazers_count: 0, forks_count: 0, updated_at: "2026-06-24" },
+    { name: "Practicas-Python", html_url: "https://github.com/erac73/Practicas-Python", description: "Ejercicios y prácticas en Python — fundamentos y algoritmos.", language: "Python", stargazers_count: 0, forks_count: 0, updated_at: "2026-06-24" },
   ];
 
   const STATIC_COMMITS = [
-    { msg: "Update portfolio sections and fix layout",  repo: "bytecode-portfolio",            date: "2d ago" },
-    { msg: "Add dental clinic module — patient records", repo: "Cl-nica-Odontol-gica-Sonrisas", date: "4w ago" },
-    { msg: "Refactor permission service layer",          repo: "Sistema-de-Roles-y-Permisos",   date: "6mo ago" },
-    { msg: "Fix CRUD delete confirmation dialog",        repo: "Proyecto-Crud",                 date: "1y ago" },
-    { msg: "Initial commit — login validator UI",        repo: "LoginValidatorSwing",           date: "2y ago" },
+    { msg: "feat: add raindrops distributed storage core",  repo: "raindrops", date: "1h ago" },
+    { msg: "feat: add chatark browser extension",           repo: "chatark", date: "2d ago" },
+    { msg: "feat: add book-manager-api endpoints",          repo: "book-manager-api", date: "3d ago" },
+    { msg: "feat: add rubik-os base system",                repo: "rubik-os", date: "1w ago" },
+    { msg: "Update portfolio sections and fix layout",       repo: "bytecode-portfolio", date: "2w ago" },
+    { msg: "feat: docker commands reference guide",         repo: "docker-commands-reference", date: "3w ago" },
+    { msg: "Update portfolio — new projects added",          repo: "bytecode-portfolio", date: "1mo ago" },
   ];
 
   const LANG_COLORS = {
@@ -711,7 +727,7 @@ if(certSec) new IntersectionObserver(e=>{
 
     contact: () => [
       { cls:"t-out-resp", t:"📧 edwarddelcastillo4@gmail.com" },
-      { cls:"t-out-resp", t:"🐙 github.com/24kgolden" },
+      { cls:"t-out-resp", t:"🐙 github.com/erac73" },
       { cls:"t-out-resp", t:"🐦 x.com/666_serpico" },
     ],
 

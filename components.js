@@ -72,7 +72,7 @@
       <nav class="menu-nav">${overlayLinks}</nav>
       <div class="menu-footer">
         <div class="menu-socials">
-          <a href="https://github.com/24kgolden" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://github.com/erac73" target="_blank" rel="noopener">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/edwar-ram%C3%ADrez-11b995270/" target="_blank" rel="noopener">LinkedIn ↗</a>
           <a href="https://x.com/666_serpico" target="_blank" rel="noopener">X / Twitter ↗</a>
         </div>
@@ -89,7 +89,7 @@
         <a href="index.html" class="nav-logo">ER<span class="accent">.</span></a>
         <nav class="footer-links">${footerLinks}</nav>
         <div class="footer-soc">
-          <a href="https://github.com/24kgolden" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+          <a href="https://github.com/erac73" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/edwar-ram%C3%ADrez-11b995270/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
           <a href="https://x.com/666_serpico" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
           <a href="mailto:edwarddelcastillo4@gmail.com"><i class="fas fa-envelope"></i></a>
