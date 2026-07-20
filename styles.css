@@ -390,6 +390,7 @@ body::after {
 .cert-block-logo.todocode { background:rgba(0,255,136,.1); color:var(--g); border:1px solid rgba(0,255,136,.22); }
 .cert-block-logo.mbtu     { background:rgba(128,0,128,.15); color:#c060c0; border:1px solid rgba(128,0,128,.3); }
 .cert-block-logo.sosystec { background:rgba(255,200,0,.1); color:#ffc800; border:1px solid rgba(255,200,0,.25); }
+.cert-block-logo.anthropic { background:rgba(217,119,87,.12); color:#d97757; border:1px solid rgba(217,119,87,.25); }
 .cert-block-org { font-family:var(--fd); font-size:.9rem; font-weight:700; letter-spacing:.5px; }
 .cert-block-sub { font-family:var(--fm); font-size:var(--t-xs); color:var(--gr); letter-spacing:1px; margin-top:3px; }
 .cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp2); }
