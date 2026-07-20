@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terminal | Edwar Ramírez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="coffee-icon.png" type="image/png"/>
+  <style>
+  /* ═══════════════════════════════════════
+     TERMINAL PAGE — standalone styles
+  ═══════════════════════════════════════ */
+  .term-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
+  .term-section .wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* header */
+  .term-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .term-header .sec-n {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .75rem;
+    color: var(--accent, #00ff88);
+    letter-spacing: .12em;
+    opacity: .5;
+  }
+  .term-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--fg, #e8e8e8);
+    letter-spacing: .06em;
+    margin: 0;
+  }
+  .term-header .sec-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,255,136,.35) 0%, transparent 100%);
+    min-width: 2rem;
+  }
+  .term-hint-strip {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .7rem;
+    color: rgba(0,255,136,.5);
+    letter-spacing: .08em;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .term-hint-strip span { opacity: .6; }
+  .term-hint-strip .th-key {
+    border: 1px solid rgba(0,255,136,.3);
+    padding: .1rem .4rem;
+    border-radius: 2px;
+    color: var(--accent, #00ff88);
+    opacity: 1;
+  }
+
+  /* ── The terminal window ── */
+  .big-terminal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,255,136,.22);
+    border-radius: 6px;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(6px);
+    min-height: 560px;
+    max-height: 72vh;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,255,136,.06), inset 0 0 60px rgba(0,0,0,.4);
+    transition: border-color .25s;
+  }
+  .big-terminal:focus-within {
+    border-color: rgba(0,255,136,.5);
+    box-shadow: 0 0 40px rgba(0,255,136,.12);
+  }
+
+  /* titlebar */
+  .bt-bar {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .55rem 1rem;
+    background: rgba(0,255,136,.04);
+    border-bottom: 1px solid rgba(0,255,136,.12);
+    flex-shrink: 0;
+  }
+  .bt-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .bt-dot--r { background: #ff5f57; }
+  .bt-dot--y { background: #ffbd2e; }
+  .bt-dot--g { background: #28c840; }
+  .bt-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .72rem;
+    color: rgba(0,255,136,.6);
+    letter-spacing: .1em;
+    margin-left: .4rem;
+  }
+  .bt-badge {
+    margin-left: auto;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .62rem;
+    color: rgba(0,255,136,.35);
+    letter-spacing: .08em;
+  }
+
+  /* body */
+  .bt-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.2rem 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .8rem;
+    line-height: 1.7;
+    color: var(--fg, #e8e8e8);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,255,136,.2) transparent;
+    cursor: text;
+  }
+  .bt-body::-webkit-scrollbar { width: 4px; }
+  .bt-body::-webkit-scrollbar-thumb { background: rgba(0,255,136,.2); border-radius: 2px; }
+
+  /* line types */
+  .tl   { margin: 0; padding: 0; white-space: pre-wrap; word-break: break-all; }
+  .tg   { height: .4rem; }
+
+  .tp   { color: var(--accent, #00ff88); }           /* prompt $ */
+  .tc   { color: #fff; }                              /* typed command */
+
+  .to-cmd     { color: var(--accent, #00ff88); }     /* echoed command */
+  .to-resp    { color: #c8d6e5; }                    /* normal output */
+  .to-accent  { color: var(--accent, #00ff88); }     /* highlighted */
+  .to-warn    { color: #ffbd2e; }                    /* warning / easter */
+  .to-err     { color: #ff5f57; }                    /* error */
+  .to-dim     { color: rgba(200,214,229,.4); }       /* dim */
+  .to-cyan    { color: #00cfff; }
+  .to-magenta { color: #d97bff; }
+  .to-bold    { font-weight: 700; color: #fff; }
+
+  /* input line */
+  .bt-input-line {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .1rem 0;
+  }
+  .bt-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .8rem;
+    color: #fff;
+    caret-color: var(--accent, #00ff88);
+  }
+  .bt-cursor {
+    color: var(--accent, #00ff88);
+    animation: blink .9s step-end infinite;
+    font-size: .85rem;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* quick-commands bar */
+  .term-quickbar {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .tqb-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .07em;
+    padding: .3rem .8rem;
+    border: 1px solid rgba(0,255,136,.2);
+    background: transparent;
+    color: rgba(0,255,136,.7);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .tqb-btn:hover {
+    border-color: var(--accent, #00ff88);
+    color: var(--accent, #00ff88);
+    background: rgba(0,255,136,.06);
+  }
+
+  /* neofetch layout */
+  .nf-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 1.5rem;
+    margin: .2rem 0;
+  }
+  .nf-k { color: var(--accent, #00ff88); }
+  .nf-v { color: #c8d6e5; }
+
+  /* ── responsive ── */
+  @media (max-width: 600px) {
+    .bt-body { font-size: .72rem; padding: .8rem; }
+    .big-terminal { max-height: 65vh; }
+  }
+  </style>
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <div id="nav-placeholder"></div>
+
+  <section class="section term-section" id="github">
+    <div class="wrap">
+
+      <div class="term-header">
+        <span class="sec-n">06</span>
+        <h2 data-i18n="gh_title">Terminal</h2>
+        <span class="sec-line"></span>
+      </div>
+
+      <div class="term-hint-strip">
+        <span class="th-key">Tab</span><span>autocomplete</span>
+        <span style="margin:0 .3rem">·</span>
+        <span class="th-key">↑ ↓</span><span>history</span>
+        <span style="margin:0 .3rem">·</span>
+        <span class="th-key">help</span><span>list commands</span>
+        <span style="margin:0 .3rem">·</span>
+        <span class="th-key">clear</span><span>reset</span>
+      </div>
+
+      <!-- ══ BIG TERMINAL ══ -->
+      <div class="big-terminal" id="bigTerminal">
+        <div class="bt-bar">
+          <span class="bt-dot bt-dot--r"></span>
+          <span class="bt-dot bt-dot--y"></span>
+          <span class="bt-dot bt-dot--g"></span>
+          <span class="bt-title">edwar@portfolio:~</span>
+          <span class="bt-badge" id="termClock"></span>
+        </div>
+        <div class="bt-body" id="btBody">
+          <!-- boot lines injected by JS -->
+          <p class="tl bt-input-line" id="btInputLine">
+            <span class="tp">$&nbsp;</span>
+            <input class="bt-input" id="btInput" type="text"
+              autocomplete="off" autocorrect="off" autocapitalize="off"
+              spellcheck="false" aria-label="terminal input"/>
+            <span class="bt-cursor" id="btCursor">█</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- quick commands -->
+      <div class="term-quickbar" id="termQuickbar">
+        <button class="tqb-btn" data-cmd="whoami">whoami</button>
+        <button class="tqb-btn" data-cmd="neofetch">neofetch</button>
+        <button class="tqb-btn" data-cmd="skills">skills</button>
+        <button class="tqb-btn" data-cmd="projects">projects</button>
+        <button class="tqb-btn" data-cmd="experience">experience</button>
+        <button class="tqb-btn" data-cmd="certs">certs</button>
+        <button class="tqb-btn" data-cmd="contact">contact</button>
+        <button class="tqb-btn" data-cmd="status">status</button>
+        <button class="tqb-btn" data-cmd="help">help</button>
+        <button class="tqb-btn" data-cmd="clear">clear</button>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="components.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+  /* ═══════════════════════════════════════════
+     BIG TERMINAL — github.html
+  ═══════════════════════════════════════════ */
+  (function () {
+    const terminal  = document.getElementById('bigTerminal');
+    const body      = document.getElementById('btBody');
+    const input     = document.getElementById('btInput');
+    const cursor    = document.getElementById('btCursor');
+    const inputLine = document.getElementById('btInputLine');
+    const clockEl   = document.getElementById('termClock');
+    if (!terminal || !input) return;
+
+    let cmdHistory = [];
+    let histIdx    = -1;
+
+    /* ── Live clock ── */
+    function updateClock() {
+      if (clockEl) clockEl.textContent = new Date().toLocaleTimeString();
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    /* ═══════════════════════════════════════
+       COMMAND DEFINITIONS
+       Each command returns an array of
+       { cls, html } objects or a string 'CLEAR'.
+    ═══════════════════════════════════════ */
+    const CMDS = {
+
+      help: () => [
+        { cls:'to-accent', html:'┌─────────────────────────────────────────┐' },
+        { cls:'to-accent', html:'│           AVAILABLE COMMANDS            │' },
+        { cls:'to-accent', html:'└─────────────────────────────────────────┘' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-resp',   html:'  <span class="to-accent">whoami</span>      — About me' },
+        { cls:'to-resp',   html:'  <span class="to-accent">neofetch</span>    — System info card' },
+        { cls:'to-resp',   html:'  <span class="to-accent">skills</span>      — Full tech stack + levels' },
+        { cls:'to-resp',   html:'  <span class="to-accent">projects</span>    — All projects' },
+        { cls:'to-resp',   html:'  <span class="to-accent">experience</span>  — Work / internship' },
+        { cls:'to-resp',   html:'  <span class="to-accent">education</span>   — Academic background' },
+        { cls:'to-resp',   html:'  <span class="to-accent">certs</span>       — Certifications (11)' },
+        { cls:'to-resp',   html:'  <span class="to-accent">contact</span>     — Get in touch' },
+        { cls:'to-resp',   html:'  <span class="to-accent">status</span>      — Current status' },
+        { cls:'to-resp',   html:'  <span class="to-accent">ls</span>          — List directory' },
+        { cls:'to-resp',   html:'  <span class="to-accent">date</span>        — Current date' },
+        { cls:'to-resp',   html:'  <span class="to-accent">pwd</span>         — Working directory' },
+        { cls:'to-resp',   html:'  <span class="to-accent">uname</span>       — System info' },
+        { cls:'to-resp',   html:'  <span class="to-dim">coffee  hack  matrix  sudo  joke  dragon</span>  — extras' },
+        { cls:'to-resp',   html:'  <span class="to-accent">clear</span>       — Clear terminal' },
+      ],
+
+      whoami: () => [
+        { cls:'to-accent', html:'  ┌──────────────────────────────────────┐' },
+        { cls:'to-accent', html:'  │            EDWAR RAMÍREZ             │' },
+        { cls:'to-accent', html:'  └──────────────────────────────────────┘' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-resp',   html:'  <span class="to-bold">Role</span>       Software Engineering Student' },
+        { cls:'to-resp',   html:'  <span class="to-bold">Focus</span>      Backend Development' },
+        { cls:'to-resp',   html:'  <span class="to-bold">University</span> UTEG — Guayaquil, Ecuador 🇪🇨' },
+        { cls:'to-resp',   html:'  <span class="to-bold">Semester</span>   5th ongoing' },
+        { cls:'to-resp',   html:'  <span class="to-bold">GitHub</span>     <span class="to-cyan">github.com/erac73</span>' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-dim',    html:'  "Build real things. Learn from every line of code."' },
+      ],
+
+      neofetch: () => [
+        { cls:'to-accent', html:'         ██████╗ ██████╗' },
+        { cls:'to-accent', html:'        ██╔════╝ ██╔══██╗' },
+        { cls:'to-accent', html:'        ██║  ███╗██████╔╝' },
+        { cls:'to-accent', html:'        ██║   ██║██╔══██╗' },
+        { cls:'to-accent', html:'        ╚██████╔╝██║  ██║' },
+        { cls:'to-accent', html:'         ╚═════╝ ╚═╝  ╚═╝' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-resp',   html:'  <span class="to-accent">edwar</span>@<span class="to-accent">portfolio</span>' },
+        { cls:'to-dim',    html:'  ──────────────────────────' },
+        { cls:'to-resp',   html:'  <span class="to-accent">OS</span>         EdwarOS 5.0 — Java-Powered' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Host</span>       UTEG · Guayaquil, Ecuador' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Kernel</span>     Java 21 LTS · Spring Boot 3' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Shell</span>      bash + git' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Uptime</span>     5 semesters, ∞ coffees' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Packages</span>   MySQL · Docker · HTML/CSS/JS' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Terminal</span>   This one ← you\'re in it' },
+        { cls:'to-resp',   html:'  <span class="to-accent">CPU</span>        Caffeine-based, overclocked' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Memory</span>     Stack Overflow × GitHub Docs' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Projects</span>   19 shipped · more incoming' },
+        { cls:'to-resp',   html:'  <span class="to-accent">Status</span>     <span class="to-accent">● OPEN TO OPPORTUNITIES</span>' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-warn',   html:'  ██ ██ ██ ██ ██ ██ ██ ██  ← palette' },
+      ],
+
+      skills: () => [
+        { cls:'to-accent', html:'  // LANGUAGES' },
+        { cls:'to-resp',   html:'  Java        <span class="to-accent">██████████████████░░</span>  90%' },
+        { cls:'to-resp',   html:'  JavaScript  <span class="to-accent">████████████░░░░░░░░</span>  60%' },
+        { cls:'to-resp',   html:'  Python      <span class="to-accent">██████████░░░░░░░░░░</span>  50%' },
+        { cls:'to-resp',   html:'  SQL         <span class="to-accent">███████████████░░░░░</span>  78%' },
+        { cls:'to-resp',   html:'  PHP         <span class="to-accent">████████░░░░░░░░░░░░</span>  40%' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-accent', html:'  // BACKEND & FRAMEWORKS' },
+        { cls:'to-resp',   html:'  Spring Boot <span class="to-accent">███████████████░░░░░</span>  80%' },
+        { cls:'to-resp',   html:'  REST APIs   <span class="to-accent">██████████████░░░░░░</span>  75%' },
+        { cls:'to-resp',   html:'  JPA / JSP   <span class="to-accent">██████████░░░░░░░░░░</span>  55%' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-accent', html:'  // DEVOPS & TOOLS' },
+        { cls:'to-resp',   html:'  Git/GitHub  <span class="to-accent">████████████████░░░░</span>  75%' },
+        { cls:'to-resp',   html:'  Docker      <span class="to-accent">████████████░░░░░░░░</span>  65%' },
+        { cls:'to-resp',   html:'  Linux       <span class="to-accent">███████████░░░░░░░░░</span>  55%' },
+        { cls:'to-resp',   html:'  MySQL       <span class="to-accent">████████████████░░░░</span>  78%' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-accent', html:'  // AI & EMERGING TECH' },
+        { cls:'to-resp',   html:'  AI / ML     <span class="to-accent">█████████░░░░░░░░░░░</span>  45%' },
+        { cls:'to-resp',   html:'  IoT         <span class="to-accent">███████░░░░░░░░░░░░░</span>  35%' },
+        { cls:'to-resp',   html:'  Crypto      <span class="to-accent">██████░░░░░░░░░░░░░░</span>  30%' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-accent', html:'  // CURRENTLY LEARNING' },
+        { cls:'to-warn',   html:'  → Deep Learning  · JSP + JPA  · Distributed Systems' },
+      ],
+
+      projects: () => [
+        { cls:'to-accent', html:'  // 19 PROJECTS — github.com/erac73' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-cyan',   html:'  AI & RASPBERRY PI' },
+        { cls:'to-resp',   html:'  HEIMDALL        <span class="to-dim">Raspberry Pi 5 · AI · IoT</span>' },
+        { cls:'to-resp',   html:'  Ai-coding-agent <span class="to-dim">Java 21 · Autonomous agent</span>' },
+        { cls:'to-resp',   html:'  Ai-predictor    <span class="to-dim">Java · ML · Pattern detection</span>' },
+        { cls:'to-resp',   html:'  S-Y-S-P-U-L-S-E <span class="to-dim">Linux system monitor · Cyberpunk</span>' },
+        { cls:'to-resp',   html:'  Raindrops       <span class="to-dim">Java · Cryptography · Distributed</span>' },
+        { cls:'to-resp',   html:'  ChatArk         <span class="to-dim">JavaScript · Browser extension · AI</span>' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-cyan',   html:'  BACKEND / APIs' },
+        { cls:'to-resp',   html:'  To-Do API       <span class="to-dim">Spring Boot 3 · REST · Java 21</span>' },
+        { cls:'to-resp',   html:'  Book Manager    <span class="to-dim">Spring Boot 3 · REST · Java 17</span>' },
+        { cls:'to-resp',   html:'  PassForge       <span class="to-dim">Spring Boot · Security · Full-Stack</span>' },
+        { cls:'to-resp',   html:'  Roles&Perms     <span class="to-dim">Java · RBAC · Access control</span>' },
+        { cls:'to-resp',   html:'  FILECLI         <span class="to-dim">Java · CLI · Linux</span>' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-cyan',   html:'  DESKTOP / GUI' },
+        { cls:'to-resp',   html:'  Clínica Sonrisas <span class="to-dim">Java · MySQL · GUI</span>' },
+        { cls:'to-resp',   html:'  Peluqueria Canina <span class="to-dim">Java · MySQL · CRUD</span>' },
+        { cls:'to-resp',   html:'  Login Validator  <span class="to-dim">Java · Swing · Auth</span>' },
+        { cls:'to-resp',   html:'  Gestor Autos     <span class="to-dim">Java · GUI · Management</span>' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-cyan',   html:'  TOOLS & REFERENCE' },
+        { cls:'to-resp',   html:'  Docker Ref       <span class="to-dim">Docker · Containers · DevOps</span>' },
+        { cls:'to-resp',   html:'  Rubik-OS         <span class="to-dim">Linux · Arch · Shell</span>' },
+        { cls:'to-resp',   html:'  Árboles y Grafos <span class="to-dim">Java · Data Structures</span>' },
+        { cls:'to-resp',   html:'  Prácticas Python <span class="to-dim">Python · Algorithms</span>' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-dim',    html:'  → projects.html for full details + links' },
+      ],
+
+      experience: () => [
+        { cls:'to-accent', html:'  // WORK EXPERIENCE' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-bold',   html:'  SOSYSTEC S.A.S. — Solution System Technology' },
+        { cls:'to-cyan',   html:'  Prácticas Preprofesionales · 2026' },
+        { cls:'to-resp',   html:'  ─────────────────────────────────────────' },
+        { cls:'to-resp',   html:'  Duration   240 professional hours' },
+        { cls:'to-resp',   html:'  Location   Guayaquil, Ecuador' },
+        { cls:'to-resp',   html:'  Type       Professional Internship' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-resp',   html:'  Real-world experience in software development' },
+        { cls:'to-resp',   html:'  and enterprise technology solutions.' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-accent', html:'  // COMPETITIONS' },
+        { cls:'to-resp',   html:'  Hackathon Tech Tiger Code 2025  <span class="to-warn">⚡ Participated</span>' },
+        { cls:'to-resp',   html:'  Tech Fair — UTEG 2023           <span class="to-warn">🏆 Exhibited</span>' },
+      ],
+
+      education: () => [
+        { cls:'to-accent', html:'  // EDUCATION' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-bold',   html:'  Software Engineering' },
+        { cls:'to-cyan',   html:'  UTEG — Universidad Tecnológica Empresarial de Guayaquil' },
+        { cls:'to-resp',   html:'  2022 → present  |  Semester 5  |  Guayaquil, Ecuador' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-accent', html:'  // KEY SUBJECTS' },
+        { cls:'to-resp',   html:'  Backend Architecture   Design Patterns   Algorithms' },
+        { cls:'to-resp',   html:'  Databases              OOP               Software Eng' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-dim',    html:'  → timeline.html for full journey' },
+      ],
+
+      certs: () => [
+        { cls:'to-accent', html:'  // 11 CERTIFICATIONS · 270+ CEUs + Hours' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-cyan',   html:'  TodoCode Academy' },
+        { cls:'to-resp',   html:'  ✓ Java Web con JSP y JPA          Apr 2026' },
+        { cls:'to-resp',   html:'  ✓ OOP con Java                    Jun 2025' },
+        { cls:'to-resp',   html:'  ✓ BD Relacionales con MySQL        Dec 2024' },
+        { cls:'to-resp',   html:'  ✓ Introducción a Git y GitHub      Jun 2024' },
+        { cls:'to-resp',   html:'  ✓ Java para Principiantes          Aug 2023' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-cyan',   html:'  Miami Business Technological University' },
+        { cls:'to-resp',   html:'  ✓ Introduction to Arduino   30 CEUs · Jan 2026' },
+        { cls:'to-resp',   html:'  ✓ Introduction to Deep Learning   30 CEUs · Jan 2026' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-cyan',   html:'  Professional & Academic' },
+        { cls:'to-resp',   html:'  ✓ SOSYSTEC Internship    240 hrs · Mar 2026 <span class="to-warn">★</span>' },
+        { cls:'to-resp',   html:'  ✓ FLISoL Guayaquil 2026  Apr 2026 <span class="to-warn">★</span>' },
+        { cls:'to-resp',   html:'  ✓ Hackathon Tech Tiger Code 2025' },
+        { cls:'to-resp',   html:'  ✓ Tech Fair — UTEG 2023' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-dim',    html:'  → certs.html for full details' },
+      ],
+
+      contact: () => [
+        { cls:'to-accent', html:'  // CONTACT' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-resp',   html:'  📧 <span class="to-cyan">edwarddelcastillo4@gmail.com</span>' },
+        { cls:'to-resp',   html:'  🐙 <span class="to-cyan">github.com/erac73</span>' },
+        { cls:'to-resp',   html:'  💼 <span class="to-cyan">linkedin.com/in/edwar-ramírez</span>' },
+        { cls:'to-resp',   html:'  𝕏  <span class="to-cyan">x.com/666_serpico</span>' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-dim',    html:'  → contact.html to send a message directly' },
+      ],
+
+      status: () => [
+        { cls:'to-accent', html:'  // CURRENT STATUS' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-resp',   html:'  <span class="to-accent">●</span> Studying Software Engineering — semester 5' },
+        { cls:'to-resp',   html:'  <span class="to-warn">●</span> Building Java & AI projects actively' },
+        { cls:'to-resp',   html:'  <span class="to-dim">●</span> Deepening Spring Boot knowledge' },
+        { cls:'to-resp',   html:'  <span class="to-dim">●</span> Exploring IoT with Raspberry Pi 5' },
+        { cls:'to-resp',   html:'  <span class="to-dim">●</span> Learning Deep Learning fundamentals' },
+        { cls:'to-resp',   html:'' },
+        { cls:'to-accent', html:'  ✅ OPEN TO OPPORTUNITIES' },
+      ],
+
+      ls: () => [
+        { cls:'to-resp', html:'  <span class="to-accent">projects/</span>   <span class="to-accent">skills/</span>   <span class="to-accent">certs/</span>   <span class="to-accent">experience/</span>' },
+        { cls:'to-resp', html:'  about.txt   contact.txt   coffee.jar   readme.md' },
+      ],
+
+      'cat about.txt': () => [
+        { cls:'to-resp', html:'  Software Engineering student and backend developer' },
+        { cls:'to-resp', html:'  passionate about building clean, efficient systems.' },
+        { cls:'to-resp', html:'  Constantly learning through projects, hackathons,' },
+        { cls:'to-resp', html:'  and real-world experience. Java is home. ☕' },
+      ],
+
+      'cat readme.md': () => [
+        { cls:'to-warn', html:'  # Edwar Ramírez — Portfolio' },
+        { cls:'to-resp', html:'  Backend developer · Java enthusiast · System builder' },
+        { cls:'to-resp', html:'  University: UTEG · GitHub: erac73' },
+        { cls:'to-dim',  html:'  "Build real things. Learn from every line of code."' },
+      ],
+
+      date: () => [
+        { cls:'to-resp', html:'  ' + new Date().toLocaleString() },
+      ],
+
+      pwd: () => [
+        { cls:'to-resp', html:'  /home/edwar/portfolio' },
+      ],
+
+      uname: () => [
+        { cls:'to-resp', html:'  EdwarOS 5.0 — Java 21 LTS · Spring Boot 3 — Build 2025' },
+      ],
+
+      /* ── Easter eggs ── */
+      coffee: () => [
+        { cls:'to-accent', html:'        ( (' },
+        { cls:'to-accent', html:'         ) )' },
+        { cls:'to-accent', html:'      ........' },
+        { cls:'to-accent', html:'      |      |]' },
+        { cls:'to-accent', html:'      \\      /' },
+        { cls:'to-accent', html:"       `----'" },
+        { cls:'to-warn',   html:'  ☕  Coffee loaded. Productivity +200%.' },
+      ],
+
+      hack: () => [
+        { cls:'to-warn',   html:'  INITIATING HACK SEQUENCE...' },
+        { cls:'to-accent', html:'  > accessing mainframe......... ✓' },
+        { cls:'to-accent', html:'  > bypassing firewall........... ✓' },
+        { cls:'to-accent', html:'  > downloading internet......... ✓' },
+        { cls:'to-accent', html:'  > installing coffee.jar........ ✓' },
+        { cls:'to-accent', html:'  > deploying to production...... ✓' },
+        { cls:'to-warn',   html:'  HACK COMPLETE. You are now elite. 😎' },
+      ],
+
+      matrix: () => [
+        { cls:'to-accent', html:'  Wake up, Neo...' },
+        { cls:'to-accent', html:'  The Matrix has you...' },
+        { cls:'to-resp',   html:'  01000101 01100100 01110111 01100001 01110010' },
+        { cls:'to-warn',   html:'  Follow the white rabbit. 🐇' },
+      ],
+
+      sudo: () => [
+        { cls:'to-err',  html:'  sudo: permission denied' },
+        { cls:'to-resp', html:'  (nice try though 😄)' },
+      ],
+
+      dragon: () => [
+        { cls:'to-accent', html:'     /\\_____/\\' },
+        { cls:'to-accent', html:' /\\  / o   o \\' },
+        { cls:'to-accent', html:'//\\\\ \\  w  /  🔥' },
+        { cls:'to-accent', html:'\\  / /     \\' },
+        { cls:'to-accent', html:' \\/  \\  ^  /' },
+        { cls:'to-resp',   html:'  🐉 The dragon awakens.' },
+      ],
+
+      joke: () => {
+        const jokes = [
+          ['Why do programmers prefer dark mode?',          'Because light attracts bugs! 🐛'],
+          ['How many programmers to change a lightbulb?',   'None. That\'s a hardware problem.'],
+          ['A SQL query walks into a bar,',                  'walks up to two tables: "Can I JOIN you?" 😂'],
+          ['Why did Java break up with JavaScript?',         'Too many undefined issues. 💔'],
+          ['What\'s a dev\'s favourite place?',              'The foo bar. 🍺'],
+          ['Why is 6 afraid of 7?',                          'Because 7 ate 9... in O(n) time. 😅'],
+        ];
+        const [q, a] = jokes[Math.floor(Math.random() * jokes.length)];
+        return [
+          { cls:'to-resp', html:'  ' + q },
+          { cls:'to-warn', html:'  ' + a },
+        ];
+      },
+
+      'git push': () => [
+        { cls:'to-accent', html:'  Pushing to origin/main...' },
+        { cls:'to-err',    html:'  fatal: rejected — pushing to production on a Friday? 😱' },
+      ],
+
+      'git blame': () => [
+        { cls:'to-resp', html:'  edwar (2024) — it was me. I regret nothing.' },
+      ],
+
+      'rm -rf /': () => [
+        { cls:'to-err',  html:'  rm: WARNING: deleting entire filesystem' },
+        { cls:'to-err',  html:'  rm: just kidding 😅 nothing was harmed' },
+      ],
+
+      'hello world': () => [
+        { cls:'to-accent', html:'  System.out.println("Hello, World! 👋");' },
+      ],
+
+      clear: () => 'CLEAR',
+    };
+
+    /* all valid command keys for Tab autocomplete */
+    const CMD_KEYS = Object.keys(CMDS);
+
+    /* ═════════════════════════════════════
+       RENDER HELPERS
+    ═════════════════════════════════════ */
+    function appendLine(cls, html) {
+      const p = document.createElement('p');
+      p.className = 'tl ' + cls;
+      p.innerHTML = html;
+      body.insertBefore(p, inputLine);
+    }
+
+    function appendSpacer() {
+      const p = document.createElement('p');
+      p.className = 'tg';
+      body.insertBefore(p, inputLine);
+    }
+
+    function scrollBottom() {
+      body.scrollTop = body.scrollHeight;
+    }
+
+    /* ═════════════════════════════════════
+       BOOT SEQUENCE
+    ═════════════════════════════════════ */
+    const BOOT = [
+      { cls:'to-dim',    html:'  EdwarOS 5.0 — Java-Powered Terminal' },
+      { cls:'to-dim',    html:'  ───────────────────────────────────' },
+      { cls:'to-resp',   html:'  Type <span class="to-accent">help</span> for available commands.' },
+      { cls:'to-resp',   html:'  Or click a quick-command button below. ↓' },
+    ];
+
+    BOOT.forEach(({ cls, html }) => appendLine(cls, html));
+    appendSpacer();
+    scrollBottom();
+
+    /* ═════════════════════════════════════
+       COMMAND RUNNER
+    ═════════════════════════════════════ */
+    function runCmd(raw) {
+      const trimmed = raw.trim();
+      if (!trimmed) return;
+
+      cmdHistory.unshift(trimmed);
+      histIdx = -1;
+
+      /* echo the typed command */
+      const echo = document.createElement('p');
+      echo.className = 'tl';
+      echo.innerHTML = `<span class="tp">$&nbsp;</span><span class="to-cmd">${escHtml(trimmed)}</span>`;
+      body.insertBefore(echo, inputLine);
+
+      const key     = trimmed.toLowerCase();
+      const handler = CMDS[key];
+
+      if (key === 'clear') {
+        /* remove everything except the inputLine */
+        [...body.children].forEach(el => { if (el !== inputLine) el.remove(); });
+        BOOT.forEach(({ cls, html }) => appendLine(cls, html));
+        appendSpacer();
+        scrollBottom();
+        return;
+      }
+
+      if (handler) {
+        const result = handler();
+        if (Array.isArray(result)) {
+          appendSpacer();
+          result.forEach(({ cls, html }) => appendLine(cls, html));
+          appendSpacer();
+        }
+      } else {
+        appendLine('to-err', `  command not found: <span class="to-bold">${escHtml(trimmed)}</span>  — try <span class="to-accent">help</span>`);
+        appendSpacer();
+      }
+
+      scrollBottom();
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    /* ═════════════════════════════════════
+       INPUT EVENTS
+    ═════════════════════════════════════ */
+    /* Click anywhere to focus */
+    terminal.addEventListener('click', () => input.focus());
+    body.addEventListener('click', () => input.focus());
+
+    input.addEventListener('focus', () => {
+      cursor.style.display = 'none';
+      terminal.style.borderColor = 'rgba(0,255,136,.5)';
+    });
+    input.addEventListener('blur', () => {
+      cursor.style.display = '';
+      terminal.style.borderColor = '';
+    });
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const val = input.value;
+        input.value = '';
+        runCmd(val);
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (histIdx < cmdHistory.length - 1) histIdx++;
+        input.value = cmdHistory[histIdx] || '';
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (histIdx > 0) histIdx--;
+        else { histIdx = -1; input.value = ''; }
+        input.value = histIdx >= 0 ? cmdHistory[histIdx] : '';
+      }
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const partial = input.value.trim().toLowerCase();
+        if (!partial) return;
+        const match = CMD_KEYS.find(k => k.startsWith(partial) && k !== partial);
+        if (match) input.value = match;
+      }
+    });
+
+    /* ── Quick-command buttons ── */
+    document.querySelectorAll('.tqb-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        runCmd(btn.dataset.cmd);
+        input.focus();
+      });
+    });
+
+  })();
+  </script>
+</body>
+</html>>

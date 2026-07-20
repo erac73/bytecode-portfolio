@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | Edwar Ramírez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="coffee-icon.png" type="image/png"/>
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <div id="nav-placeholder"></div>
+
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-n">04</span>
+        <h2 data-i18n="proj_title">Projects</h2>
+        <span class="sec-line"></span>
+        <div class="view-btns">
+          <button class="vb active" id="vbGrid" title="Grid"><i class="fas fa-grip"></i></button>
+          <button class="vb" id="vbList" title="List"><i class="fas fa-list"></i></button>
+        </div>
+      </div>
+
+      <!-- Category filters -->
+      <div class="proj-filters" id="projFilters">
+        <button class="pf-btn active" data-filter="all"  data-i18n="pf_all">All</button>
+        <button class="pf-btn" data-filter="java"  ><i class="fab fa-java"></i> <span data-i18n="pf_java">Java</span></button>
+        <button class="pf-btn" data-filter="linux" ><i class="fab fa-linux"></i> <span data-i18n="pf_linux">Linux</span></button>
+        <button class="pf-btn" data-filter="ai"    ><i class="fas fa-robot"></i> <span data-i18n="pf_ai">AI / API</span></button>
+        <button class="pf-btn" data-filter="raspi" ><i class="fas fa-microchip"></i> <span data-i18n="pf_raspi">Raspberry Pi</span></button>
+      </div>
+
+      <!-- ════════════════ GRID VIEW ════════════════ -->
+      <div class="proj-grid proj-grid--3" id="projGrid">
+
+        <!-- HEIMDALL — raspi + ai -->
+        <a href="https://github.com/erac73/HEIMDALL" target="_blank" rel="noopener"
+           class="pcard pcard--feat pcard--raspi" data-cat="raspi ai">
+          <div class="pcard-icon pcard-icon--raspi"><i class="fas fa-eye"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat pcard-badge--raspi" data-i18n="pf_raspi">Raspberry Pi</span>
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>HEIMDALL</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p_heimdall_d">Intelligent surveillance system with AI for Raspberry Pi 5. Real-time pattern detection and intelligent monitoring — "The guardian that never sleeps."</p>
+            <div class="ptags"><span>Raspberry Pi 5</span><span>AI</span><span>IoT</span><span>Surveillance</span></div>
+          </div>
+        </a>
+
+        <!-- Ai-coding-agent — ai + java -->
+        <a href="https://github.com/erac73/Ai-coding-agent" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="ai java">
+          <div class="pcard-icon"><i class="fas fa-robot"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Ai-coding-agent</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p_agent_d">Autonomous AI coding agent built in Java 21. Analyzes projects, writes and modifies code, runs commands, manages Git, and reasons step-by-step.</p>
+            <div class="ptags"><span>Java 21</span><span>AI</span><span>Autonomous</span><span>Git</span></div>
+          </div>
+        </a>
+
+        <!-- Ai-predictor — ai + java -->
+        <a href="https://github.com/erac73/Ai-predictor" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="ai java">
+          <div class="pcard-icon"><i class="fas fa-brain"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Ai-predictor</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p_predictor_d">Pattern Recognition and Prediction System written in Java. Analyzes datasets and applies AI techniques to detect trends and make predictions.</p>
+            <div class="ptags"><span>Java</span><span>AI</span><span>ML</span><span>Patterns</span></div>
+          </div>
+        </a>
+
+        <!-- To-Do API — ai + java -->
+        <a href="https://github.com/erac73/To-Do-API" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="ai java">
+          <div class="pcard-icon"><i class="fas fa-code-branch"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>To-Do API</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p7_d">REST API for task management built with Spring Boot 3 and Java 21. Full CRUD operations, clean architecture and production-ready REST endpoints.</p>
+            <div class="ptags"><span>Spring Boot 3</span><span>Java 21</span><span>REST API</span><span>CRUD</span></div>
+          </div>
+        </a>
+
+        <!-- PassForge — java -->
+        <a href="https://github.com/erac73/PassForge-" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="java">
+          <div class="pcard-icon"><i class="fas fa-key"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>PassForge</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p_passforge_d">Full-stack password manager with Java Spring Boot backend and a modern frontend. Secure credential storage with clean architecture.</p>
+            <div class="ptags"><span>Java</span><span>Spring Boot</span><span>Security</span><span>Full-Stack</span></div>
+          </div>
+        </a>
+
+        <!-- Roles & Permissions — java -->
+        <a href="https://github.com/erac73/Sistema-de-Roles-y-Permisos" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="java">
+          <div class="pcard-icon"><i class="fas fa-shield-halved"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3 data-i18n="p2_n">Roles &amp; Permissions</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p2_d">Role-based access control in Java. Manages users, roles and granular permissions with structured backend architecture.</p>
+            <div class="ptags"><span>Java</span><span>RBAC</span><span>Security</span></div>
+          </div>
+        </a>
+
+        <!-- Clínica Odontológica — java -->
+        <a href="https://github.com/erac73/Cl-nica-Odontol-gica-Sonrisas" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
+          <div class="pcard-img">
+            <img src="clinica-sonrisas.png" alt="Clínica Odontológica Sonrisas" class="pimg"
+              onerror="this.parentElement.innerHTML='<div class=\'pcard-icon\'><i class=\'fas fa-tooth\'></i></div>'"/>
+          </div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3 data-i18n="p5_n">Clínica Odontológica Sonrisas</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p5_d">Dental clinic management system built in Java. Handles patient records, appointments and clinic data with a structured backend architecture.</p>
+            <div class="ptags"><span>Java</span><span>MySQL</span><span>GUI</span></div>
+          </div>
+        </a>
+
+        <!-- Peluqueria Canina — java -->
+        <a href="https://github.com/erac73/Proyecto-Crud?tab=readme-ov-file" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
+          <div class="pcard-img"><img src="peluqueria.png" alt="Peluqueria Canina" class="pimg"/></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3 data-i18n="p3_n">Peluqueria Canina</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p3_d">Full CRUD desktop app for a canine grooming salon built in Java with MySQL backend.</p>
+            <div class="ptags"><span>Java</span><span>MySQL</span><span>CRUD</span></div>
+          </div>
+        </a>
+
+        <!-- Login Validator — java -->
+        <a href="https://github.com/erac73/LoginValidatorSwing" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
+          <div class="pcard-img"><img src="login.png" alt="Login Validator" class="pimg"/></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3 data-i18n="p1_n">Login Validator</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p1_d">Desktop login validation built with Java Swing. Authentication with clean dark UI and credential management.</p>
+            <div class="ptags"><span>Java</span><span>Swing</span><span>GUI</span></div>
+          </div>
+        </a>
+
+        <!-- ── Java Snippet — DRAGGABLE ── -->
+        <div class="pcard pcard--code pcard--draggable" id="javaSnippet" draggable="true" data-cat="java" style="grid-column: span 2;">
+          <div class="pcard-drag-handle" title="Drag to move">
+            <i class="fas fa-grip-vertical"></i>
+          </div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="code-left">
+            <div>
+              <h3 data-i18n="p4_n">Java Snippet</h3>
+              <p>A live animated snippet showcasing clean OOP patterns — the kind of code that runs in every project above.</p>
+            </div>
+            <div class="ptags"><span>Java</span><span>OOP</span></div>
+          </div>
+          <div class="code-right">
+            <div class="mini-terminal">
+              <div class="terminal-head">
+                <span class="t-btn t-red"></span>
+                <span class="t-btn t-yellow"></span>
+                <span class="t-btn t-green"></span>
+                <span class="t-label">HelloWorld.java</span>
+              </div>
+              <div class="terminal-body">
+                <pre class="codebox" id="liveCode"><code id="liveEl"></code><span class="lcursor" id="lcursor">█</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILECLI — linux + java -->
+        <a href="https://github.com/erac73/FILECLI" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="linux java">
+          <div class="pcard-icon"><i class="fab fa-linux"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_linux">Linux</span>
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>FILECLI</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p6_d">CLI file management tool for Linux — written in Java. Navigate, create, delete and manage files directly from the terminal with a clean command interface.</p>
+            <div class="ptags"><span>Java</span><span>CLI</span><span>Linux</span><span>Terminal</span></div>
+          </div>
+        </a>
+
+        <!-- ════ S-Y-S-P-U-L-S-E — linux ════ -->
+        <a href="https://github.com/erac73/S-Y-S-P-U-L-S-E" target="_blank" rel="noopener"
+           class="pcard pcard--feat pcard--syspulse" data-cat="linux">
+          <div class="pcard-icon pcard-icon--syspulse"><i class="fas fa-gauge-high"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat pcard-badge--linux" data-i18n="pf_linux">Linux</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>S-Y-S-P-U-L-S-E</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc" data-i18n="p_syspulse_d">Real-time Linux system monitor with a cyberpunk dashboard aesthetic. Tracks CPU, RAM, processes and network — inspired by btop, htop, glances and neofetch.</p>
+            <div class="ptags"><span>Linux</span><span>Bash</span><span>System</span><span>Dashboard</span><span>Cyberpunk</span></div>
+          </div>
+        </a>
+
+        <!-- ════ raindrops — java + ai ════ -->
+        <a href="https://github.com/erac73/raindrops" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="java ai">
+          <div class="pcard-icon"><i class="fas fa-droplet"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Raindrops</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">Threshold cryptography-based distributed storage model. Data is fragmented into meaningless micro-units (drops) reconstructed only under controlled conditions.</p>
+            <div class="ptags"><span>Java</span><span>Cryptography</span><span>Distributed</span><span>Storage</span></div>
+          </div>
+        </a>
+
+        <!-- ════ rubik-os — linux ════ -->
+        <a href="https://github.com/erac73/rubik-os" target="_blank" rel="noopener"
+           class="pcard pcard--feat pcard--linux" data-cat="linux">
+          <div class="pcard-icon pcard-icon--linux"><i class="fab fa-linux"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat pcard-badge--linux" data-i18n="pf_linux">Linux</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Rubik-OS</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">Distribución Linux basada en Arch, optimizada para memoria con arquitectura descentralizada inspirada en el Cubo Rubik.</p>
+            <div class="ptags"><span>Linux</span><span>Arch</span><span>Shell</span><span>OS</span></div>
+          </div>
+        </a>
+
+        <!-- ════ chatark — javascript ════ -->
+        <a href="https://github.com/erac73/chatark" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="ai">
+          <div class="pcard-icon"><i class="fas fa-comments"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>ChatArk</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">Extensión de navegador para descargar conversaciones de ChatGPT, Claude y Gemini. Exporta a JSON, Markdown, HTML o sincroniza con la nube.</p>
+            <div class="ptags"><span>JavaScript</span><span>Browser Extension</span><span>AI</span><span>Export</span></div>
+          </div>
+        </a>
+
+        <!-- ════ book-manager-api — java ════ -->
+        <a href="https://github.com/erac73/book-manager-api" target="_blank" rel="noopener"
+           class="pcard pcard--feat" data-cat="java ai">
+          <div class="pcard-icon"><i class="fas fa-book"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Book Manager API</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">API REST construida con Spring Boot 3 y Java 17 para gestionar una colección personal de libros. Operaciones CRUD completas y búsqueda por autor, género y estado.</p>
+            <div class="ptags"><span>Spring Boot 3</span><span>Java 17</span><span>REST API</span><span>CRUD</span></div>
+          </div>
+        </a>
+
+        <!-- ════ Gestor de Automóviles — java ════ -->
+        <a href="https://github.com/erac73/Gestor-de-Autom-viles-Administraci-n-y-Control-de-Veh-culos" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
+          <div class="pcard-icon"><i class="fas fa-car"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Gestor de Automóviles</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">Sistema de administración y control de vehículos. Gestión de automóviles con interfaz estructurada y backend en Java.</p>
+            <div class="ptags"><span>Java</span><span>GUI</span><span>Management</span></div>
+          </div>
+        </a>
+
+        <!-- ════ docker-commands-reference ════ -->
+        <a href="https://github.com/erac73/docker-commands-reference" target="_blank" rel="noopener"
+           class="pcard pcard--feat pcard--linux" data-cat="linux">
+          <div class="pcard-icon pcard-icon--linux"><i class="fab fa-docker"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat pcard-badge--linux" data-i18n="pf_linux">Linux</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Docker Commands Reference</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">Referencia completa de comandos Docker. Guía rápida para containerización, imágenes, volúmenes y redes.</p>
+            <div class="ptags"><span>Docker</span><span>Containers</span><span>Reference</span><span>DevOps</span></div>
+          </div>
+        </a>
+
+        <!-- ════ Abroles_y_Grafos — java ════ -->
+        <a href="https://github.com/erac73/Abroles_y_Grafos" target="_blank" rel="noopener"
+           class="pcard" data-cat="java">
+          <div class="pcard-icon"><i class="fas fa-project-diagram"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_java">Java</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Árboles y Grafos</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">Implementación de estructuras de datos de árboles y grafos en Java. Algoritmos de traversal y búsqueda.</p>
+            <div class="ptags"><span>Java</span><span>Data Structures</span><span>Graphs</span><span>Trees</span></div>
+          </div>
+        </a>
+
+        <!-- ════ Practicas-Python — python ════ -->
+        <a href="https://github.com/erac73/Practicas-Python" target="_blank" rel="noopener"
+           class="pcard" data-cat="ai">
+          <div class="pcard-icon"><i class="fab fa-python"></i></div>
+          <div class="pcard-badges">
+            <span class="pcard-badge-cat" data-i18n="pf_ai">AI / API</span>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-head">
+              <h3>Prácticas Python</h3>
+              <i class="fas fa-arrow-up-right-from-square parr"></i>
+            </div>
+            <p class="pdesc">Colección de ejercicios y prácticas en Python. Fundamentos de programación, algoritmos y estructuras de datos.</p>
+            <div class="ptags"><span>Python</span><span>Exercises</span><span>Algorithms</span></div>
+          </div>
+        </a>
+
+      </div><!-- /proj-grid -->
+
+      <!-- ════════════════ LIST VIEW ════════════════ -->
+      <div class="proj-list hidden" id="projList">
+        <div class="pl-head">
+          <span data-i18n="pl_proj">Project</span>
+          <span data-i18n="pl_stack">Stack</span>
+          <span data-i18n="pl_yr">Year</span>
+          <span></span>
+        </div>
+        <a href="https://github.com/erac73/HEIMDALL" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">HEIMDALL</span>
+          <span class="pl-stack">Raspberry Pi 5 · AI · IoT</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Ai-coding-agent" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Ai-coding-agent</span>
+          <span class="pl-stack">Java 21 · AI · Autonomous</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Ai-predictor" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Ai-predictor</span>
+          <span class="pl-stack">Java · AI · ML</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/To-Do-API" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">To-Do API</span>
+          <span class="pl-stack">Spring Boot 3 · Java 21 · REST</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/PassForge-" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">PassForge</span>
+          <span class="pl-stack">Java · Spring Boot · Security</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Sistema-de-Roles-y-Permisos" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name" data-i18n="p2_n">Roles &amp; Permissions</span>
+          <span class="pl-stack">Java · RBAC · Security</span>
+          <span class="pl-yr">2024</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Cl-nica-Odontol-gica-Sonrisas" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name" data-i18n="p5_n">Clínica Odontológica Sonrisas</span>
+          <span class="pl-stack">Java · MySQL · GUI</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Proyecto-Crud?tab=readme-ov-file" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name" data-i18n="p3_n">Peluqueria Canina</span>
+          <span class="pl-stack">Java · MySQL · CRUD</span>
+          <span class="pl-yr">2023</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/LoginValidatorSwing" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name" data-i18n="p1_n">Login Validator</span>
+          <span class="pl-stack">Java · Swing · GUI</span>
+          <span class="pl-yr">2023</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <div class="pl-row no-link">
+          <span class="pl-name" data-i18n="p4_n">Java Snippet</span>
+          <span class="pl-stack">Java · OOP</span>
+          <span class="pl-yr">2023</span>
+          <span class="pl-arr" style="opacity:.3">—</span>
+        </div>
+        <a href="https://github.com/erac73/FILECLI" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">FILECLI</span>
+          <span class="pl-stack">Java · CLI · Linux</span>
+          <span class="pl-yr">2024</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <!-- ════ S-Y-S-P-U-L-S-E list row ════ -->
+        <a href="https://github.com/erac73/S-Y-S-P-U-L-S-E" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">S-Y-S-P-U-L-S-E</span>
+          <span class="pl-stack">Linux · Bash · Dashboard</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/raindrops" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Raindrops</span>
+          <span class="pl-stack">Java · Cryptography · Distributed</span>
+          <span class="pl-yr">2026</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/rubik-os" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Rubik-OS</span>
+          <span class="pl-stack">Linux · Arch · Shell</span>
+          <span class="pl-yr">2026</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/chatark" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">ChatArk</span>
+          <span class="pl-stack">JavaScript · Browser Extension · AI</span>
+          <span class="pl-yr">2026</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/book-manager-api" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Book Manager API</span>
+          <span class="pl-stack">Spring Boot 3 · Java 17 · REST</span>
+          <span class="pl-yr">2026</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Gestor-de-Autom-viles-Administraci-n-y-Control-de-Veh-culos" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Gestor de Automóviles</span>
+          <span class="pl-stack">Java · GUI · Management</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/docker-commands-reference" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Docker Commands Reference</span>
+          <span class="pl-stack">Docker · Containers · DevOps</span>
+          <span class="pl-yr">2026</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Abroles_y_Grafos" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Árboles y Grafos</span>
+          <span class="pl-stack">Java · Data Structures</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+        <a href="https://github.com/erac73/Practicas-Python" target="_blank" rel="noopener" class="pl-row">
+          <span class="pl-name">Prácticas Python</span>
+          <span class="pl-stack">Python · Algorithms</span>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+          <span class="pl-yr">2025</span>
+          <span class="pl-arr">↗</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="components.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    /* ── Filters ── */
+    .proj-filters { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:var(--sp5,2rem); }
+    .pf-btn {
+      display:inline-flex; align-items:center; gap:.4rem;
+      padding:.45rem 1.1rem;
+      border:1px solid rgba(255,255,255,.15); background:transparent;
+      color:var(--fg-2,#aaa); font-family:inherit; font-size:.78rem;
+      letter-spacing:.08em; text-transform:uppercase; cursor:pointer;
+      border-radius:2px; transition:all .2s;
+    }
+    .pf-btn:hover { border-color:var(--accent,#00ff88); color:var(--accent,#00ff88); }
+    .pf-btn.active { background:var(--accent,#00ff88); border-color:var(--accent,#00ff88); color:#000; font-weight:700; }
+    .pf-btn[data-filter="raspi"]:hover:not(.active) { border-color:#ff4d6d; color:#ff4d6d; }
+    .pf-btn[data-filter="raspi"].active { background:#ff4d6d; border-color:#ff4d6d; color:#fff; }
+    .pf-btn[data-filter="linux"]:hover:not(.active) { border-color:#00cfff; color:#00cfff; }
+    .pf-btn[data-filter="linux"].active { background:#00cfff; border-color:#00cfff; color:#000; }
+    .pcard.hidden-filter { display:none !important; }
+
+    /* ── Multi-badge row ── */
+    .pcard-badges {
+      position:absolute; top:.85rem; right:.85rem;
+      display:flex; flex-direction:column; gap:.3rem; align-items:flex-end;
+      z-index:2; pointer-events:none;
+    }
+    .pcard-badge-cat {
+      font-size:.62rem; font-family:'Share Tech Mono',monospace;
+      letter-spacing:.09em; text-transform:uppercase;
+      padding:.18rem .5rem;
+      border:1px solid rgba(0,255,136,.25); color:var(--accent,#00ff88);
+      border-radius:2px; background:rgba(0,255,136,.06);
+    }
+    .pcard-badge--raspi {
+      border-color:rgba(255,77,109,.35); color:#ff4d6d;
+      background:rgba(255,77,109,.08);
+    }
+    .pcard-badge--linux {
+      border-color:rgba(0,207,255,.35); color:#00cfff;
+      background:rgba(0,207,255,.08);
+    }
+
+    /* ── Raspberry Pi card ── */
+    .pcard--raspi .pcard-icon--raspi {
+      background:linear-gradient(135deg,rgba(198,0,66,.18) 0%,rgba(198,0,66,.05) 100%);
+      border-color:rgba(198,0,66,.35); color:#ff4d6d;
+    }
+    .pcard--raspi:hover { border-color:rgba(255,77,109,.5) !important; }
+
+    /* ── S-Y-S-P-U-L-S-E card ── */
+    .pcard--syspulse .pcard-icon--syspulse {
+      background:linear-gradient(135deg,rgba(0,207,255,.18) 0%,rgba(0,207,255,.05) 100%);
+      border-color:rgba(0,207,255,.35); color:#00cfff;
+    }
+    .pcard--syspulse:hover { border-color:rgba(0,207,255,.5) !important; }
+    .pcard--syspulse:hover .pcard-icon--syspulse {
+      box-shadow: 0 0 18px rgba(0,207,255,.25);
+    }
+
+    /* ── Cards need relative for badges ── */
+    .pcard { position:relative; }
+
+    /* ── Draggable Java Snippet ── */
+    .pcard--draggable { cursor:grab; user-select:none; }
+    .pcard--draggable:active { cursor:grabbing; }
+
+    .pcard-drag-handle {
+      position:absolute; top:.85rem; left:.85rem;
+      color:rgba(0,255,136,.35); font-size:.9rem;
+      cursor:grab; z-index:3; transition:color .2s;
+    }
+    .pcard--draggable:hover .pcard-drag-handle { color:var(--accent,#00ff88); }
+
+    /* While dragging */
+    .pcard--dragging {
+      opacity:.35;
+      border-color:var(--accent,#00ff88) !important;
+      box-shadow:0 0 20px rgba(0,255,136,.2) !important;
+    }
+
+    /* Drop zone indicator — shows between cards */
+    .drop-indicator {
+      grid-column: span 1;
+      border:2px dashed var(--accent,#00ff88);
+      border-radius:6px;
+      background:rgba(0,255,136,.04);
+      min-height:80px;
+      transition:all .15s;
+      pointer-events:none;
+    }
+    .drop-indicator.drop-indicator--wide { grid-column: span 2; }
+
+    /* Drag-over highlight on sibling cards */
+    .pcard.drag-over-before { box-shadow:-4px 0 0 var(--accent,#00ff88) !important; }
+    .pcard.drag-over-after  { box-shadow: 4px 0 0 var(--accent,#00ff88) !important; }
+  </style>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ══════════════════════════════════════
+       1. MULTI-CATEGORY FILTER
+    ══════════════════════════════════════ */
+    const filterBtns = document.querySelectorAll('.pf-btn');
+    const snippet    = document.getElementById('javaSnippet');
+    const grid       = document.getElementById('projGrid');
+
+    function getCards() {
+      return document.querySelectorAll('#projGrid [data-cat]');
+    }
+
+    function applyFilter(filter) {
+      getCards().forEach(card => {
+        const cats = card.dataset.cat.split(' ');
+        const show = filter === 'all' || cats.includes(filter);
+        card.classList.toggle('hidden-filter', !show);
+      });
+      if (snippet) {
+        snippet.style.gridColumn = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
+      }
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        applyFilter(this.dataset.filter);
+      });
+    });
+
+    /* ══════════════════════════════════════
+       2. DRAG-AND-DROP — Java Snippet
+       Fixes:
+         · visibility:hidden → opacity (no double-gap bug)
+         · localStorage persists drop position across reloads
+    ══════════════════════════════════════ */
+    if (!snippet) return;
+
+    const STORAGE_KEY = 'javaSnippetPos';
+    let isDragging   = false;
+    let overCard     = null;
+    let insertBefore = true;
+
+    /* ── Helpers ── */
+    function getVisibleCards() {
+      return [...grid.querySelectorAll('[data-cat]:not(#javaSnippet):not(.hidden-filter)')];
+    }
+
+    function removePlaceholder() {
+      grid.querySelector('.drop-indicator')?.remove();
+    }
+
+    function insertPlaceholder(refCard, before) {
+      removePlaceholder();
+      const ph = document.createElement('div');
+      ph.className = 'drop-indicator';
+      before ? grid.insertBefore(ph, refCard) : refCard.after(ph);
+    }
+
+    /* ── Persistence: save position as index among ALL grid children ── */
+    function savePosition() {
+      const children = [...grid.children].filter(el => !el.classList.contains('drop-indicator'));
+      localStorage.setItem(STORAGE_KEY, children.indexOf(snippet));
+    }
+
+    function restorePosition() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === null) return;
+      const idx      = parseInt(saved, 10);
+      const children = [...grid.children].filter(el => !el.classList.contains('drop-indicator'));
+      if (isNaN(idx) || idx < 0) return;
+
+      if (idx >= children.length) {
+        grid.appendChild(snippet);
+      } else {
+        const ref = children[idx];
+        if (ref && ref !== snippet) grid.insertBefore(snippet, ref);
+      }
+      snippet.style.gridColumn = 'span 2';
+    }
+
+    /* Restore saved position on page load */
+    restorePosition();
+
+    /* ── dragstart ──
+       KEY FIX: use opacity instead of visibility:hidden.
+       visibility:hidden keeps the element in the flow → double gap with placeholder.
+       opacity:0 + pointer-events:none also keeps it in flow but invisible,
+       so the grid doesn't collapse — only the placeholder marks the target. ── */
+    snippet.addEventListener('dragstart', e => {
+      isDragging = true;
+      snippet.classList.add('pcard--dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', 'snippet');
+
+      /* rAF so the browser captures the drag-image BEFORE we change opacity */
+      requestAnimationFrame(() => {
+        snippet.style.opacity        = '0';
+        snippet.style.pointerEvents  = 'none';
+      });
+    });
+
+    /* ── dragend ── */
+    snippet.addEventListener('dragend', () => {
+      isDragging = false;
+      snippet.classList.remove('pcard--dragging');
+      snippet.style.opacity       = '';
+      snippet.style.pointerEvents = '';
+      removePlaceholder();
+      getVisibleCards().forEach(c => c.classList.remove('drag-over-before','drag-over-after'));
+      overCard = null;
+    });
+
+    /* ── dragover ── */
+    grid.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (!isDragging) return;
+
+      const cards = getVisibleCards();
+      let target = null;
+      let before = true;
+
+      for (const card of cards) {
+        const rect = card.getBoundingClientRect();
+        const midX = rect.left + rect.width / 2;
+        const midY = rect.top  + rect.height / 2;
+
+        if (e.clientY >= rect.top - 8 && e.clientY <= rect.bottom + 8) {
+          target = card;
+          before = e.clientX < midX;
+          break;
+        }
+        if (Math.abs(e.clientY - midY) < rect.height * 0.6) {
+          target = card;
+          before = e.clientX < midX;
+        }
+      }
+
+      if (!target || (target === overCard && before === insertBefore)) return;
+      overCard     = target;
+      insertBefore = before;
+      insertPlaceholder(target, before);
+    });
+
+    /* ── drop ── */
+    grid.addEventListener('drop', e => {
+      e.preventDefault();
+      if (!isDragging) return;
+
+      const ph = grid.querySelector('.drop-indicator');
+      if (ph) {
+        grid.insertBefore(snippet, ph);
+        ph.remove();
+      }
+
+      snippet.style.gridColumn    = snippet.classList.contains('hidden-filter') ? '' : 'span 2';
+      snippet.style.opacity       = '';
+      snippet.style.pointerEvents = '';
+
+      savePosition(); /* ← persist new position */
+    });
+
+    grid.addEventListener('dragenter', e => e.preventDefault());
+
+  });
+  </script>
+</body>
+</html>
